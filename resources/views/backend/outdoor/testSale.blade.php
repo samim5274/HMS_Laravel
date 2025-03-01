@@ -196,8 +196,17 @@
                         </tr>
                     </thead>
                     <tbody class="text-center">                            
-                        
-                                
+                        @foreach($testSale as $key => $val)
+                        <tr>
+                            <td scope="row">{{$key+1}}</td>
+                            <td class="text-left">{{$val->name}}</td>
+                            <td>{{$val->total}}/-</td>
+                            <td>{{$val->discount}}/-</td>
+                            <td>{{$val->pay}}/-</td>
+                            <td>{{$val->due}}/-</td>
+                            <td>{{$val->duestatus}}</td>
+                        </tr>
+                        @endforeach                                
                     </tbody>
                 </table>
             </div>

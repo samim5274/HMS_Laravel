@@ -107,15 +107,19 @@ class DignosisController extends Controller
         $testsum = Testdetails::sum('testPrice');
         $doctor = Doctor::all();
         $refer = Reference::all();
-        $store = Storetest::all();
+        
 
         $userId = Auth::guard('admin')->user()->id;
         $sl = Testsaledetails::where('date', date('Y-m-d'))->count();
         $invoice = date('Ymd').$userId.$sl+1;
 
+        $testSale = Testsaledetails::all();
+
         $sum = Storetest::where('regNum', $invoice)->sum('testprice');
+        $store = Storetest::where('regNum', $invoice)->get();
+
         
-        return view('backend.outdoor.testSale', compact('testDetils','doctor','refer','store','sum','testsum'));
+        return view('backend.outdoor.testSale', compact('testDetils','doctor','refer','store','sum','testsum','testSale'));
     }
 
     public function addDoctor(Request $request)
@@ -180,9 +184,9 @@ class DignosisController extends Controller
         $sl = Testsaledetails::where('date', date('Y-m-d'))->count();
         $invoice = date('Ymd').$userId.$sl+1;
 
-        $sum = Storetest::where('regNum', $invoice)->sum('testprice');
+        $total = Storetest::where('regNum', $invoice)->sum('testprice');
 
-        $data->regNum = $invoice;
+        $data->reg = $invoice;
         $data->date = date('Y-m-d');
         $data->name = $request->has('txtName')? $request->get('txtName'):'';
         $data->dob = $request->has('dtpDob')? $request->get('dtpDob'):'';   
@@ -192,16 +196,25 @@ class DignosisController extends Controller
         $data->doctorId = $request->has('cbxDoctor')? $request->get('cbxDoctor'):'';
         $data->referId = $request->has('cbxRefer')? $request->get('cbxRefer'):'';
 
-        $data->total = $sum;
-        $data->discount = $request->has('txtDiscount')? $request->get('txtDiscount'):'';
-        $data->payable = $request->has('txtPayable')? $request->get('txtPayable'):'';//
-        $data->pay = $request->has('txtPay')? $request->get('txtPay'):'';
-        $data->duestatus = $request->has('txtDue')? $request->get('txtDue'):'';//
-        $data->due = $request->has('txtDue')? $request->get('txtDue'):'';//
+        $data->total = $total;
+        $data->discount = $discount = $request->has('txtDiscount')? $request->get('txtDiscount'):'';
+        $data->payable = $total - $discount;
         $receivedAmount = $request->has('txtReceived')? $request->get('txtReceived'):'';
-        $data->reportstatus = 1;
+        $payAmount = $receivedAmount - $data->payable;
+        $data->pay = $payAmount; 
+
+        if($data->pay < 0){
+            $data->duestatus = 1;
+            $data->due = $data->payable - $receivedAmount;
+        }
+        else{
+            $data->duestatus = 0;
+            $data->due = 0;
+        }      
         
+        $data->reportstatus = 1;
         dd($data);
+        // $data->save();
         return redirect()->back()->with('success', 'Test Sale successfully');
     }
 }
