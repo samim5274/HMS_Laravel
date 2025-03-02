@@ -204,7 +204,7 @@
                             <td>{{$val->discount}}/-</td>
                             <td>{{$val->pay}}/-</td>
                             <td>{{$val->due}}/-</td>
-                            <td>{{$val->duestatus}}</td>
+                            <td><span class="status {{ $val->duestatus == 0 ? 'paid' : 'due' }}">{{ $val->duestatus == 0 ? 'Paid' : 'Due' }}</span></td>
                         </tr>
                         @endforeach                                
                     </tbody>

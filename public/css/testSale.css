@@ -26,3 +26,19 @@ table th{
 #num2, #num3{
     font-size: 1.5rem;
 }
+
+.status {
+    display: inline-block;
+    padding: 2px 5px;
+    border-radius: 5px;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.paid {
+    background-color: green;
+}
+.due {
+    background-color: red;
+}

@@ -197,24 +197,28 @@ class DignosisController extends Controller
         $data->referId = $request->has('cbxRefer')? $request->get('cbxRefer'):'';
 
         $data->total = $total;
-        $data->discount = $discount = $request->has('txtDiscount')? $request->get('txtDiscount'):'';
-        $data->payable = $total - $discount;
-        $receivedAmount = $request->has('txtReceived')? $request->get('txtReceived'):'';
-        $payAmount = $receivedAmount - $data->payable;
-        $data->pay = $payAmount; 
 
-        if($data->pay < 0){
+        $data->discount = $discount = $request->has('txtDiscount')? $request->get('txtDiscount'):'';
+
+        $data->payable = $payable = $total - $discount;
+
+        $receivedAmount = $request->has('txtReceived')? $request->get('txtReceived'):'';
+
+        
+        if($payable < $receivedAmount){
+            $data->pay = $payable; 
+            $data->duestatus = 0;
+            $data->due = 0;
+        }
+        else{
+            $data->pay = $receivedAmount;
             $data->duestatus = 1;
             $data->due = $data->payable - $receivedAmount;
         }
-        else{
-            $data->duestatus = 0;
-            $data->due = 0;
-        }      
-        
+     
         $data->reportstatus = 1;
-        dd($data);
-        // $data->save();
+
+        $data->save();
         return redirect()->back()->with('success', 'Test Sale successfully');
     }
 }
