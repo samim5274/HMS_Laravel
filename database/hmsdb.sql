@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2025 at 10:29 AM
+-- Generation Time: Mar 04, 2025 at 11:17 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -305,7 +305,11 @@ INSERT INTO `storetests` (`id`, `regNum`, `testId`, `testprice`, `categoryId`, `
 (73, 2025030214, 3, 450, 1, 1, 1, 2, 103, '2025-03-02 03:23:59', '2025-03-02 03:23:59'),
 (74, 2025030214, 1, 650, 1, 1, 1, 1, 103, '2025-03-02 03:24:00', '2025-03-02 03:24:00'),
 (75, 2025030215, 3, 450, 1, 1, 1, 2, 103, '2025-03-02 03:24:34', '2025-03-02 03:24:34'),
-(76, 2025030215, 1, 650, 1, 1, 1, 1, 103, '2025-03-02 03:24:35', '2025-03-02 03:24:35');
+(76, 2025030215, 1, 650, 1, 1, 1, 1, 103, '2025-03-02 03:24:35', '2025-03-02 03:24:35'),
+(77, 2025030441, 2, 200, 1, 1, 1, 1, 103, '2025-03-04 02:10:53', '2025-03-04 02:10:53'),
+(78, 2025030441, 3, 450, 1, 1, 1, 2, 103, '2025-03-04 02:10:54', '2025-03-04 02:10:54'),
+(79, 2025030442, 3, 450, 1, 1, 1, 2, 103, '2025-03-04 02:16:52', '2025-03-04 02:16:52'),
+(80, 2025030442, 1, 650, 1, 1, 1, 1, 103, '2025-03-04 02:16:53', '2025-03-04 02:16:53');
 
 -- --------------------------------------------------------
 
@@ -412,7 +416,9 @@ INSERT INTO `testsaledetails` (`id`, `reg`, `date`, `name`, `dob`, `gender`, `ph
 (9, 2025030212, '2025-03-02', 'Ikbal Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 2, 4, 650, 50, 600, 600, 0, 0, 1, '2025-03-02 03:17:05', '2025-03-02 03:17:05'),
 (10, 2025030213, '2025-03-02', 'Rayhan Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 1, 3, 200, 0, 200, 200, 0, 0, 1, '2025-03-02 03:19:19', '2025-03-02 03:19:19'),
 (11, 2025030214, '2025-03-02', 'Asad Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 1, 1, 1100, 300, 800, 800, 0, 0, 1, '2025-03-02 03:24:22', '2025-03-02 03:24:22'),
-(12, 2025030215, '2025-03-02', 'Eity', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 2, 1, 1100, 200, 900, 500, 1, 400, 1, '2025-03-02 03:25:02', '2025-03-02 03:25:02');
+(12, 2025030215, '2025-03-02', 'Eity', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 2, 1, 1100, 200, 900, 500, 1, 400, 1, '2025-03-02 03:25:02', '2025-03-02 03:25:02'),
+(13, 2025030441, '2025-03-04', 'Sabbir Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 1, 3, 650, 50, 600, 600, 0, 0, 1, '2025-03-04 02:11:07', '2025-03-04 02:11:07'),
+(14, 2025030442, '2025-03-04', 'Shamim Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 3, 3, 1100, 0, 1100, 1000, 1, 100, 1, '2025-03-04 02:17:11', '2025-03-04 02:17:11');
 
 -- --------------------------------------------------------
 
@@ -592,7 +598,7 @@ ALTER TABLE `specimens`
 -- AUTO_INCREMENT for table `storetests`
 --
 ALTER TABLE `storetests`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 
 --
 -- AUTO_INCREMENT for table `subcategories`
@@ -610,7 +616,7 @@ ALTER TABLE `testdetails`
 -- AUTO_INCREMENT for table `testsaledetails`
 --
 ALTER TABLE `testsaledetails`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `users`

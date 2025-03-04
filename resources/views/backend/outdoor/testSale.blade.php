@@ -204,7 +204,14 @@
                             <td>{{$val->discount}}/-</td>
                             <td>{{$val->pay}}/-</td>
                             <td>{{$val->due}}/-</td>
-                            <td><span class="status {{ $val->duestatus == 0 ? 'paid' : 'due' }}">{{ $val->duestatus == 0 ? 'Paid' : 'Due' }}</span></td>
+                            <!-- <td><span class="status {{ $val->duestatus == 0 ? 'paid' : 'due' }}">{{ $val->duestatus == 0 ? 'Paid' : 'Due' }}</span></td> -->
+                            <td>
+                                @if ($val->duestatus == 0)
+                                <span class="status paid">Paid</span>
+                                @else
+                                    <a href="{{url('/deu-collection/'.$val->id)}}" class="status due ">Due</a>
+                                @endif
+                            </td>
                         </tr>
                         @endforeach                                
                     </tbody>

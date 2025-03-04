@@ -50,5 +50,6 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('/add-test-sale', [DignosisController::class, 'saleTest']);
 
     Route::get('/test-sale-view', [DignosisController::class, 'testSaleView'])->name('test.sale.View');
+    Route::get('/deu-collection/{id}', [DignosisController::class, 'deuCollection'])->name('due.collection.View');
 });
 

@@ -114,6 +114,7 @@ class DignosisController extends Controller
         $invoice = date('Ymd').$userId.$sl+1;
 
         $testSale = Testsaledetails::all();
+        // $testSale = Testsaledetails::where('date', date('Y-m-d'))->get();
 
         $sum = Storetest::where('regNum', $invoice)->sum('testprice');
         $store = Storetest::where('regNum', $invoice)->get();
@@ -220,5 +221,11 @@ class DignosisController extends Controller
 
         $data->save();
         return redirect()->back()->with('success', 'Test Sale successfully');
+    }
+
+    public function deuCollection(Request $request, $id)
+    {
+        $testSale = Testsaledetails::where('id', $id)->get();
+        return view('backend.outdoor.dueCollection', compact('testSale'));
     }
 }
