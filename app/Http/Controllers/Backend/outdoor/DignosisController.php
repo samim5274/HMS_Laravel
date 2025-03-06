@@ -226,6 +226,13 @@ class DignosisController extends Controller
     public function deuCollection(Request $request, $id)
     {
         $testSale = Testsaledetails::where('id', $id)->get();
-        return view('backend.outdoor.dueCollection', compact('testSale'));
+        $invoice = $testSale[0]->reg;        
+        $doctor = Doctor::all();
+        $refer = Reference::all();
+
+        $sum = Storetest::where('regNum', $invoice)->sum('testprice');
+        $store = Storetest::where('regNum', $invoice)->get();
+                
+        return view('backend.outdoor.dueCollection', compact('testSale','doctor','refer','store','sum'));
     }
 }
