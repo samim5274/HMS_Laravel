@@ -232,7 +232,47 @@ class DignosisController extends Controller
 
         $sum = Storetest::where('regNum', $invoice)->sum('testprice');
         $store = Storetest::where('regNum', $invoice)->get();
-                
-        return view('backend.outdoor.dueCollection', compact('testSale','doctor','refer','store','sum'));
+
+        $total = $testSale[0]->payable;
+        $totalpay = $testSale[0]->pay;
+        $payabledue = $total - $totalpay;
+               
+        return view('backend.outdoor.dueCollection', compact('testSale','doctor','refer','store','sum','payabledue'));
+    }
+
+    public function deuCollectionUpdate(Request $request, $id)
+    {
+        $data = Testsaledetails::find($id); // payable, pay, duestatus, due
+
+        $oldDiscount = $data->discount;
+        $oldPay = $data->pay;
+        $oldDue = $data->due;
+
+        $discount = $request->has('txtDiscount')? $request->get('txtDiscount'):'';
+        $receivedDue = $request->has('txtReceivedDue')? $request->get('txtReceivedDue'):'';
+        $invoice = $data->reg;
+        $total = Storetest::where('regNum', $invoice)->sum('testprice');
+
+        $newDiscount = $oldDiscount + $discount;
+        $newPay = $oldPay + $receivedDue;
+        $newPayable = $total - $newDiscount;
+
+        if($discount > $oldDue){
+            return redirect()->back()->with('error', 'Discount amount is greater than due amount.');
+        }
+        else{
+            $data->discount = $newDiscount;
+            $data->pay = $newPay;         
+            $data->payable = $newPayable;
+            $data->due = $newPayable - $newPay;
+            if($data->due == 0 || $data->due < 0){
+                $data->duestatus = 0;
+            }
+            else{
+                $data->duestatus = 1;
+            }
+        }
+        dd($data);
+        return redirect('/test-sale-view')->with('success', 'Due Collection successfully');
     }
 }

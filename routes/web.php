@@ -51,5 +51,6 @@ Route::group(['middleware'=>'admin'], function(){
 
     Route::get('/test-sale-view', [DignosisController::class, 'testSaleView'])->name('test.sale.View');
     Route::get('/deu-collection/{id}', [DignosisController::class, 'deuCollection'])->name('due.collection.View');
+    Route::get('/due-collection-update/{id}', [DignosisController::class, 'deuCollectionUpdate']);
 });
 
