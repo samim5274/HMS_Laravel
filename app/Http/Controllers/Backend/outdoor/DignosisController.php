@@ -262,12 +262,22 @@ class DignosisController extends Controller
         }
         else{
             $data->discount = $newDiscount;
-            if($newPayable < $receivedDue){
-                $data->pay = $newPay;
+
+            if($newPayable <= $receivedDue || $oldDue <= $receivedDue){
+                $data->pay = $newPayable;
             }
-            
+            else{
+                $data->pay = $newPay;
+            }            
             $data->payable = $newPayable;
-            $data->due = $newPayable - $newPay;
+            
+            if($data->pay == $data->payable){
+                $data->due = 0;
+            }
+            else{
+                $data->due = $newPayable - $newPay;
+            }
+
             if($data->due <= 0 ){
                 $data->duestatus = 0;
             }
@@ -275,7 +285,7 @@ class DignosisController extends Controller
                 $data->duestatus = 1;
             }
         }
-        
+        $data->update();
         return redirect('/test-sale-view')->with('success', 'Due Collection successfully');
     }
 }

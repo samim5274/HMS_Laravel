@@ -132,26 +132,26 @@
             </div>
         </div>
 
-        <!-- Reference Section -->
+        <!-- Doctor Section -->
         <div class="card">
-            <div class="card-header bg-info text-white">Add Reference</div>
+            <div class="card-header bg-info text-white">Add Doctor</div>
             <div class="card-body">
                 <form id="Group" action="/add-doctor" method="GET">
                     <div class="form-group">
                         <div class="form-group">
-                            <label for="Group">Reference Name</label>
-                            <input type="text" class="form-control" id="Group" name="txtReference" placeholder="Enter doctor name" required>
+                            <label for="Group">Doctor Name</label>
+                            <input type="text" class="form-control" id="Group" name="txtDoctor" placeholder="Enter doctor name" required>
                         </div>
                         <div class="form-group">
-                            <label for="Designation">Reference Designation</label>
+                            <label for="Designation">Doctor Designation</label>
                             <input type="text" class="form-control" id="Designation" value="MBBS, FCPS, ABS" name="txtDesignation" placeholder="Enter Designation name" required>
                         </div>
                         <div class="form-group">
-                            <label for="Phone">Reference Phone</label>
+                            <label for="Phone">Doctor Phone</label>
                             <input type="number" class="form-control" id="Phone" value="1762164746" name="txtPhone" placeholder="Enter Phone +880" required>
                         </div>
                         <div class="form-group">
-                            <label for="Fee">Reference Fee</label>
+                            <label for="Fee">Doctor Fee</label>
                             <input type="number" class="form-control" id="Fee" value="500" name="txtFee" placeholder="Enter Fee" required>
                         </div>
                     </div>
