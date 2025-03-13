@@ -39,12 +39,14 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('/add-test-details', [DignosisController::class, 'addTest'])->name('test.Details.View');
 
     Route::get('/dignosis-test-setting', [DignosisController::class, 'settingView'])->name('test.setting.View');
+
     Route::get('/add-category', [DignosisController::class, 'addCategory']);
     Route::get('/add-sub-category', [DignosisController::class, 'addSubCategory']);
     Route::get('/add-specimen', [DignosisController::class, 'addSpecimen']);
     Route::get('/add-group', [DignosisController::class, 'addGroup']);
     Route::get('/add-doctor', [DignosisController::class, 'addDoctor']);
     Route::get('/add-reference', [DignosisController::class, 'addReference']);
+
     Route::get('/add-item/{id}', [DignosisController::class, 'addItem']);
     Route::get('/remove-item/{id}', [DignosisController::class, 'removeItem']);
     Route::get('/add-test-sale', [DignosisController::class, 'saleTest']);
@@ -52,5 +54,8 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('/test-sale-view', [DignosisController::class, 'testSaleView'])->name('test.sale.View');
     Route::get('/deu-collection/{id}', [DignosisController::class, 'deuCollection'])->name('due.collection.View');
     Route::get('/due-collection-update/{id}', [DignosisController::class, 'deuCollectionUpdate']);
+
+    Route::get('/test-sale-return-view', [DignosisController::class, 'testSaleReturnView'])->name('test.sale.return.View');
+    Route::get('/test-return/{id}', [DignosisController::class, 'testReturn']);
 });
 

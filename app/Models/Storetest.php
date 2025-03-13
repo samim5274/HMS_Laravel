@@ -18,5 +18,6 @@ class Storetest extends Model
         'specimenId',
         'groupId',
         'room',
+        'status',
     ];
 }

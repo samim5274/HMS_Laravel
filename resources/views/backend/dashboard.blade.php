@@ -17,8 +17,6 @@
     <!-- vendor css -->
     <link rel="stylesheet" href="/assets/css/style.css">
     
-    
-
 </head>
 <body class="">
 	<!-- [ Pre-loader ] start -->
@@ -72,7 +70,7 @@
 						<ul class="pcoded-submenu">
 							<li><a href="/test-details">Test Details</a></li>
 							<li><a href="/test-sale-view">Test Sale</a></li>
-							<li><a href="#">Test Return</a></li>
+							<li><a href="/test-sale-return-view">Test Return</a></li>
 							<li><a href="#">Test Calcel</a></li>
 							<li><a href="#">Report</a></li>
 							<li><a href="/dignosis-test-setting">Settings</a></li>

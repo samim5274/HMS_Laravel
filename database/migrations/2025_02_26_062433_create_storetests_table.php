@@ -23,6 +23,7 @@ class CreateStoretestsTable extends Migration
             $table->integer('specimenId');
             $table->integer('groupId');
             $table->integer('room');
+            $table->integer('status');
             $table->timestamps();
         });
     }

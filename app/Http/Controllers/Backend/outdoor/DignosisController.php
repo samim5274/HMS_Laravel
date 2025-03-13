@@ -166,6 +166,7 @@ class DignosisController extends Controller
         $val->specimenId = $data->specimenId;
         $val->groupId = $data->groupId;
         $val->room = $data->room;
+        $val->status = 1;
         $val->save();
         return redirect()->back()->with('success', 'Test added successfully');
     }
@@ -287,5 +288,20 @@ class DignosisController extends Controller
         }
         $data->update();
         return redirect('/test-sale-view')->with('success', 'Due Collection successfully');
+    }
+
+    public function testSaleReturnView()
+    {
+        $testSale = Testsaledetails::all();
+        return view('backend.outdoor.testSaleReturnView', compact('testSale'));
+    }
+
+    public function testReturn(Request $request, $id)
+    {
+        $storeTest = Storetest::where('regNum', $id)->get();
+        $testSale = Testsaledetails::where('reg', $id)->get();
+        $invoice = $testSale[0]->reg; 
+        $sum = Storetest::where('regNum', $invoice)->sum('testprice');
+        return view('backend.outdoor.testReturn', compact('storeTest','testSale','sum'));
     }
 }
