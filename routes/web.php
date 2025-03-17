@@ -57,5 +57,6 @@ Route::group(['middleware'=>'admin'], function(){
 
     Route::get('/test-sale-return-view', [DignosisController::class, 'testSaleReturnView'])->name('test.sale.return.View');
     Route::get('/test-return/{id}', [DignosisController::class, 'testReturn']);
+    Route::get('/test-return-status/{id}', [DignosisController::class, 'testReturnStatus']);
 });
 

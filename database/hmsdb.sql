@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2025 at 09:35 AM
+-- Generation Time: Mar 17, 2025 at 10:37 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -170,8 +170,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (15, '2025_02_25_101703_create_testdetails_table', 5),
 (16, '2025_02_25_181245_create_doctors_table', 6),
 (17, '2025_02_25_184929_create_references_table', 7),
-(24, '2025_02_26_062433_create_storetests_table', 8),
-(25, '2025_02_26_065804_create_testsaledetails_table', 8);
+(26, '2025_02_26_062433_create_storetests_table', 8),
+(27, '2025_02_26_065804_create_testsaledetails_table', 8);
 
 -- --------------------------------------------------------
 
@@ -286,15 +286,22 @@ CREATE TABLE `storetests` (
 --
 
 INSERT INTO `storetests` (`id`, `regNum`, `testId`, `testprice`, `categoryId`, `subcategoryId`, `specimenId`, `groupId`, `room`, `status`, `created_at`, `updated_at`) VALUES
-(1, 2025031341, 3, 450, 1, 1, 1, 2, 103, 1, '2025-03-13 00:19:55', '2025-03-13 00:19:55'),
-(2, 2025031341, 2, 200, 1, 1, 1, 1, 103, 1, '2025-03-13 00:19:56', '2025-03-13 00:19:56'),
-(3, 2025031341, 1, 650, 1, 1, 1, 1, 103, 1, '2025-03-13 00:19:58', '2025-03-13 00:19:58'),
-(4, 2025031342, 2, 200, 1, 1, 1, 1, 103, 1, '2025-03-13 00:20:09', '2025-03-13 00:20:09'),
-(5, 2025031342, 1, 650, 1, 1, 1, 1, 103, 1, '2025-03-13 00:20:10', '2025-03-13 00:20:10'),
-(6, 2025031342, 3, 450, 1, 1, 1, 2, 103, 1, '2025-03-13 00:20:10', '2025-03-13 00:20:10'),
-(7, 2025031343, 1, 650, 1, 1, 1, 1, 103, 1, '2025-03-13 00:40:14', '2025-03-13 00:40:14'),
-(8, 2025031343, 2, 200, 1, 1, 1, 1, 103, 1, '2025-03-13 00:40:16', '2025-03-13 00:40:16'),
-(9, 2025031344, 3, 450, 1, 1, 1, 2, 103, 1, '2025-03-13 00:40:34', '2025-03-13 00:40:34');
+(1, 2025031741, 2, 200, 1, 1, 1, 1, 103, 1, '2025-03-16 23:08:35', '2025-03-17 00:28:30'),
+(2, 2025031741, 3, 450, 1, 1, 1, 2, 103, 0, '2025-03-16 23:08:37', '2025-03-17 00:42:36'),
+(3, 2025031741, 1, 650, 1, 1, 1, 1, 103, 1, '2025-03-16 23:08:39', '2025-03-17 00:28:34'),
+(4, 2025031742, 2, 200, 1, 1, 1, 1, 103, 1, '2025-03-16 23:08:57', '2025-03-16 23:08:57'),
+(5, 2025031742, 1, 650, 1, 1, 1, 1, 103, 1, '2025-03-16 23:08:58', '2025-03-16 23:08:58'),
+(6, 2025031743, 2, 200, 1, 1, 1, 1, 103, 1, '2025-03-16 23:17:16', '2025-03-16 23:17:16'),
+(7, 2025031743, 1, 650, 1, 1, 1, 1, 103, 1, '2025-03-16 23:17:17', '2025-03-16 23:17:17'),
+(8, 2025031743, 3, 450, 1, 1, 1, 2, 103, 1, '2025-03-16 23:17:18', '2025-03-16 23:17:18'),
+(9, 2025031744, 1, 650, 1, 1, 1, 1, 103, 1, '2025-03-16 23:18:18', '2025-03-16 23:18:18'),
+(10, 2025031744, 2, 200, 1, 1, 1, 1, 103, 1, '2025-03-16 23:18:20', '2025-03-16 23:18:20'),
+(14, 2025031745, 2, 200, 1, 1, 1, 1, 103, 1, '2025-03-17 00:56:12', '2025-03-17 00:56:12'),
+(15, 2025031745, 1, 650, 1, 1, 1, 1, 103, 1, '2025-03-17 00:56:13', '2025-03-17 00:56:13'),
+(16, 2025031745, 3, 450, 1, 1, 1, 2, 103, 1, '2025-03-17 00:56:15', '2025-03-17 00:56:15'),
+(17, 2025031746, 2, 200, 1, 1, 1, 1, 103, 1, '2025-03-17 00:57:41', '2025-03-17 00:57:41'),
+(18, 2025031747, 2, 200, 1, 1, 1, 1, 103, 1, '2025-03-17 02:46:09', '2025-03-17 02:46:09'),
+(19, 2025031747, 3, 450, 1, 1, 1, 2, 103, 1, '2025-03-17 02:46:09', '2025-03-17 02:46:09');
 
 -- --------------------------------------------------------
 
@@ -381,6 +388,7 @@ CREATE TABLE `testsaledetails` (
   `duestatus` int(11) NOT NULL,
   `due` int(11) NOT NULL,
   `reportstatus` int(11) NOT NULL,
+  `teststatus` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -389,11 +397,14 @@ CREATE TABLE `testsaledetails` (
 -- Dumping data for table `testsaledetails`
 --
 
-INSERT INTO `testsaledetails` (`id`, `reg`, `date`, `name`, `dob`, `gender`, `phone`, `address`, `doctorId`, `referId`, `total`, `discount`, `payable`, `pay`, `duestatus`, `due`, `reportstatus`, `created_at`, `updated_at`) VALUES
-(1, 2025031341, '2025-03-13', 'Shamim Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 6, 4, 1300, 0, 1300, 500, 1, 800, 1, '2025-03-13 00:20:05', '2025-03-13 00:20:05'),
-(2, 2025031342, '2025-03-13', 'Rakibul Islam', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 6, 1, 1300, 200, 1100, 1100, 0, 0, 1, '2025-03-13 00:20:23', '2025-03-13 00:29:54'),
-(3, 2025031343, '2025-03-13', 'Fahmida Akter', '2001-12-31', 'Female', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 4, 3, 850, 0, 850, 0, 1, 850, 1, '2025-03-13 00:40:32', '2025-03-13 00:40:32'),
-(4, 2025031344, '2025-03-13', 'Salim Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 3, 5, 450, 0, 450, 450, 0, 0, 1, '2025-03-13 00:40:48', '2025-03-13 00:40:48');
+INSERT INTO `testsaledetails` (`id`, `reg`, `date`, `name`, `dob`, `gender`, `phone`, `address`, `doctorId`, `referId`, `total`, `discount`, `payable`, `pay`, `duestatus`, `due`, `reportstatus`, `teststatus`, `created_at`, `updated_at`) VALUES
+(1, 2025031741, '2025-03-17', 'Shamim Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 3, 1, 1300, 200, 1100, 1000, 1, 100, 1, 1, '2025-03-16 23:08:53', '2025-03-16 23:08:53'),
+(2, 2025031742, '2025-03-17', 'Rakib Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 4, 1, 850, 200, 650, 650, 0, 0, 1, 1, '2025-03-16 23:09:17', '2025-03-16 23:09:17'),
+(3, 2025031743, '2025-03-17', 'Rofiqul Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 6, 5, 1300, 0, 1300, 500, 1, 800, 1, 1, '2025-03-16 23:17:47', '2025-03-16 23:17:47'),
+(4, 2025031744, '2025-03-17', 'Prothoma Akter', '2001-12-31', 'Female', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 4, 5, 850, 0, 850, 500, 1, 350, 1, 1, '2025-03-16 23:18:39', '2025-03-16 23:18:39'),
+(5, 2025031745, '2025-03-17', 'Shamim Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 5, 3, 1300, 300, 1000, 1000, 0, 0, 1, 1, '2025-03-17 00:56:29', '2025-03-17 00:56:49'),
+(6, 2025031746, '2025-03-17', 'Shamim Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 5, 4, 200, 200, 0, 0, 1, 0, 1, 1, '2025-03-17 00:57:49', '2025-03-17 00:57:49'),
+(7, 2025031747, '2025-03-17', 'Shamim Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 3, 4, 650, 650, 0, 0, 0, 0, 1, 1, '2025-03-17 02:46:17', '2025-03-17 02:46:34');
 
 -- --------------------------------------------------------
 
@@ -549,7 +560,7 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -573,7 +584,7 @@ ALTER TABLE `specimens`
 -- AUTO_INCREMENT for table `storetests`
 --
 ALTER TABLE `storetests`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `subcategories`
@@ -591,7 +602,7 @@ ALTER TABLE `testdetails`
 -- AUTO_INCREMENT for table `testsaledetails`
 --
 ALTER TABLE `testsaledetails`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`

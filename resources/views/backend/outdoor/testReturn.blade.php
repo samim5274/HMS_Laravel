@@ -111,15 +111,22 @@
                                         <tr>
                                             <td scope="row">{{$key+1}}</td>
                                             <td class="text-left">{{$val->regNum}}</td>
-                                            <td class="text-left">{{$val->testId}}</td>
+                                            <td class="text-left">{{$val->testdetails->testName}}</td>
                                             <td class="text-right">{{$val->testprice}}/-</td>
-                                            <td class="text-right"><a href="#">Return</a></td>
+                                            <!-- <td class="text-right"><a href="{{url('/test-return-status/'.$val->id)}}">{{ $val->status == 0 ? 'Returned' : 'Not Returned' }}</a></td> -->
+                                            <td class="text-right">
+                                                <a href="{{ url('/test-return-status/'.$val->id) }}" 
+                                                class="{{ $val->status == 0 ? 'text-red-500' : 'text-green-500' }}">
+                                                    {{ $val->status == 0 ? 'Returned' : 'Not Returned' }}
+                                                </a>
+                                            </td>
+
                                         </tr>
                                         @endforeach  
                                         <tr>
                                             <td colspan="2">Total Amount</td>
-                                            <td></td>
                                             <td class="text-right" colspan="2"><b>${{$sum}}/-</b></td>
+                                            <td></td>
                                         </tr>  
                                     </tbody>
                                 </table>

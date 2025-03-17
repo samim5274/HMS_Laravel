@@ -134,6 +134,7 @@
                                     <th>#</th>
                                     <th>Reg. No</th>
                                     <th>Test Name</th>
+                                    <th>Status</th>
                                     <th class="text-right">Price</th>
                                 </tr>
                             </thead>
@@ -142,7 +143,8 @@
                                 <tr>
                                     <td scope="row">{{$key+1}}</td>
                                     <td class="text-left">{{$val->regNum}}</td>
-                                    <td class="text-left">{{$val->testId}}</td>
+                                    <td class="text-left">{{$val->testdetails->testName}}</td>
+                                    <td class="text-left">{{ $val->status == 0 ? 'Returned' : 'Not Returned' }}</td>
                                     <td class="text-right">{{$val->testprice}}/-</td>
                                 </tr>
                                 @endforeach  

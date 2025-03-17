@@ -116,8 +116,8 @@ class DignosisController extends Controller
         $testSale = Testsaledetails::all();
         // $testSale = Testsaledetails::where('date', date('Y-m-d'))->get();
 
-        $sum = Storetest::where('regNum', $invoice)->sum('testprice');
-        $store = Storetest::where('regNum', $invoice)->get();
+        $sum = Storetest::where('regNum', $invoice)->where('status',1)->sum('testprice');
+        $store = Storetest::with('testdetails')->where('regNum', $invoice)->get();
 
         
         return view('backend.outdoor.testSale', compact('testDetils','doctor','refer','store','sum','testsum','testSale'));
@@ -219,7 +219,7 @@ class DignosisController extends Controller
         }
      
         $data->reportstatus = 1;
-
+        $data->teststatus = 1;
         $data->save();
         return redirect()->back()->with('success', 'Test Sale successfully');
     }
@@ -231,8 +231,8 @@ class DignosisController extends Controller
         $doctor = Doctor::all();
         $refer = Reference::all();
 
-        $sum = Storetest::where('regNum', $invoice)->sum('testprice');
-        $store = Storetest::where('regNum', $invoice)->get();
+        $sum = Storetest::where('regNum', $invoice)->where('status',1)->sum('testprice');
+        $store = Storetest::with('testdetails')->where('regNum', $invoice)->get();
 
         $total = $testSale[0]->payable;
         $totalpay = $testSale[0]->pay;
@@ -298,10 +298,29 @@ class DignosisController extends Controller
 
     public function testReturn(Request $request, $id)
     {
-        $storeTest = Storetest::where('regNum', $id)->get();
+        $storeTest = Storetest::with('testdetails')->where('regNum', $id)->get();
         $testSale = Testsaledetails::where('reg', $id)->get();
         $invoice = $testSale[0]->reg; 
-        $sum = Storetest::where('regNum', $invoice)->sum('testprice');
+        $sum = Storetest::where('regNum', $invoice)->where('status',1)->sum('testprice');
         return view('backend.outdoor.testReturn', compact('storeTest','testSale','sum'));
+    }
+
+    public function testReturnStatus(Request $request, $id)
+    {
+        $data = Storetest::find($id);
+
+        $testSale = Testsaledetails::where('reg', $data->regNum)->get();
+        $total = $testSale[0]->total;
+        $payable = $testSale[0]->payable;
+
+        $data->status = 0;
+        $price = $data->testprice;
+
+        $result = $payable - $price;
+        $payable = $result;
+        dd( $testSale[0]->total, $payable);
+        // $testSale[0]->update();
+        // $data->update();
+        return redirect()->back()->with('success', 'Test return successfully');
     }
 }

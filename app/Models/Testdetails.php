@@ -21,4 +21,9 @@ class Testdetails extends Model
         'testDescription',
         'status',
     ];
+
+    public function storetest()
+    {
+        return $this->hasMany(Testdetails::class, 'testId', 'id');
+    }
 }

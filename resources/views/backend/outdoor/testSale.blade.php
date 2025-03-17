@@ -79,7 +79,7 @@
                             <tr>
                                 <td scope="row">{{$key+1}}</td>
                                 <td class="text-left">{{$val->regNum}}</td>
-                                <td class="text-left">{{$val->testId}}</td>
+                                <td class="text-left">{{$val->testdetails->testName}}</td>
                                 <td class="text-right">{{$val->testprice}}/-</td>
                                 <td><a href="{{url('/remove-item/'.$val->id)}}"><i class="fa fa-remove" style="font-size:20px;color:red"></a></td>
                             </tr>
