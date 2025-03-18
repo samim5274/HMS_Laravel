@@ -113,14 +113,13 @@
                                             <td class="text-left">{{$val->regNum}}</td>
                                             <td class="text-left">{{$val->testdetails->testName}}</td>
                                             <td class="text-right">{{$val->testprice}}/-</td>
-                                            <!-- <td class="text-right"><a href="{{url('/test-return-status/'.$val->id)}}">{{ $val->status == 0 ? 'Returned' : 'Not Returned' }}</a></td> -->
                                             <td class="text-right">
-                                                <a href="{{ url('/test-return-status/'.$val->id) }}" 
-                                                class="{{ $val->status == 0 ? 'text-red-500' : 'text-green-500' }}">
-                                                    {{ $val->status == 0 ? 'Returned' : 'Not Returned' }}
-                                                </a>
+                                                @if($val->status == 0)
+                                                <a href="#" class="text-danger">Returns</a>
+                                                @else
+                                                <a href="{{url('/test-return-status/'.$val->id)}}" class="">Not Return</a>
+                                                @endif                                                
                                             </td>
-
                                         </tr>
                                         @endforeach  
                                         <tr>
@@ -128,7 +127,7 @@
                                             <td class="text-right" colspan="2"><b>${{$sum}}/-</b></td>
                                             <td></td>
                                         </tr>  
-                                    </tbody>
+                                    </tbody>                                    
                                 </table>
                             </div>
                             <!-- <button type="submit" class="btn btn-primary">Submit</button> -->

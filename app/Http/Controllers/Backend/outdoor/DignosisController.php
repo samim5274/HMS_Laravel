@@ -207,7 +207,7 @@ class DignosisController extends Controller
         $receivedAmount = $request->has('txtReceived')? $request->get('txtReceived'):'';
 
         
-        if($payable < $receivedAmount){
+        if($payable <= $receivedAmount){
             $data->pay = $payable; 
             $data->duestatus = 0;
             $data->due = 0;
@@ -312,13 +312,24 @@ class DignosisController extends Controller
         $testSale = Testsaledetails::where('reg', $data->regNum)->get();
         $total = $testSale[0]->total;
         $payable = $testSale[0]->payable;
+        $discounts = $testSale[0]->discount;
+        $due = $testSale[0]->due;
+        $pay = $testSale[0]->pay;
 
-        $data->status = 0;
+        
+        // $price = $data->testprice;
+        // $totals = ($total - $discounts);
+        // $payables = ($payable + $discounts) - $price; 
+
         $price = $data->testprice;
+        $payables = $payable - $price ;
+        $totals = $total - $discounts;
+        
+        // $testSale[0]->total = $totals;
+        // $testSale[0]->payable = $payables;
 
-        $result = $payable - $price;
-        $payable = $result;
-        dd( $testSale[0]->total, $payable);
+        dd('Payable:'.$payables, 'Return:'.$price,'Total:'.$totals);
+        $data->status = 0;
         // $testSale[0]->update();
         // $data->update();
         return redirect()->back()->with('success', 'Test return successfully');
