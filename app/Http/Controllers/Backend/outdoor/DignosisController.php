@@ -167,6 +167,7 @@ class DignosisController extends Controller
         $val->groupId = $data->groupId;
         $val->room = $data->room;
         $val->status = 1;
+        $val->reportstatus = 0;
         $val->save();
         return redirect()->back()->with('success', 'Test added successfully');
     }
@@ -180,6 +181,18 @@ class DignosisController extends Controller
 
     public function saleTest(Request $request)
     {
+        $name = $request->has('txtName')? $request->get('txtName'):'';
+        $dob = $request->has('dtpDob')? $request->get('dtpDob'):'';  
+        $gender = $request->has('slcGender')? $request->get('slcGender'):'';  
+        $phone = $request->has('txtPhone')? $request->get('txtPhone'):'';
+        $address = $request->has('txtAddress')? $request->get('txtAddress'):'';
+        $doctor = $request->has('cbxDoctor')? $request->get('cbxDoctor'):'';
+        $refer = $request->has('cbxRefer')? $request->get('cbxRefer'):'';
+
+        if(empty($doctor) || empty($refer) || empty($name) || empty($dob) || empty($gender) || empty($phone) || empty($address)){
+            return redirect()->back()->with('error', 'Some information is missing. Please check and try again! Thank you!');
+        }
+
         $data = new Testsaledetails();
 
         $userId = Auth::guard('admin')->user()->id;
@@ -218,10 +231,19 @@ class DignosisController extends Controller
             $data->due = $data->payable - $receivedAmount;
         }
      
-        $data->reportstatus = 1;
-        $data->teststatus = 1;
+        $data->status = 1;
+        $data->return = 0;
+        if($total <= 0){
+            return redirect()->back()->with('error', 'Please add test first');
+        }
         $data->save();
         return redirect()->back()->with('success', 'Test Sale successfully');
+    }
+
+    public function deuCollectionView()
+    {
+        $testSale = Testsaledetails::all();
+        return view('backend.outdoor.dueCollectionView', compact('testSale'));
     }
 
     public function deuCollection(Request $request, $id)
@@ -287,7 +309,7 @@ class DignosisController extends Controller
             }
         }
         $data->update();
-        return redirect('/test-sale-view')->with('success', 'Due Collection successfully');
+        return redirect('/deu-collection-view')->with('success', 'Due Collection successfully');
     }
 
     public function testSaleReturnView()
@@ -368,11 +390,17 @@ class DignosisController extends Controller
     public function testCancelStatus(Request $request, $id)
     {
         $data = Testsaledetails::where('id',$id)->first();
-        if($data->status == '0')
+        $store = Storetest::with('testdetails')->where('regNum', $data->reg)->where('reportstatus',1)->get();
+        if($store->isNotEmpty())
+        {
+            return redirect()->back()->with('error', 'Test already reported! Please try to another patient. Thank you!');
+        }
+        if($data->status == '1')
         {
             $testStore = Storetest::with('testdetails')->where('regNum', $data->reg)->update(['status' => 0]);
-            $data->teststatus = 0;
-            $data->pay = -($data->pay);
+            $data->status = 0;
+            $data->return = $data->pay;
+            $data->pay = 0;
             $data->due = 0;
             $data->duestatus = 3;
             $data->update();
@@ -382,5 +410,16 @@ class DignosisController extends Controller
         {
             return redirect()->back()->with('error', 'Test already canceled! Please try to another patient. Thank you!');
         }
+    }
+
+    public function testSaleReport()
+    {
+        $testSale = Testsaledetails::where('status',1)->where('status',1)->get();
+        $sum = Testsaledetails::where('status',1)->sum('pay');
+        $sum2 = Testsaledetails::where('status',1)->sum('payable');
+        $sum3 = Testsaledetails::where('status',1)->sum('total');
+        $sum4 = Testsaledetails::where('status',1)->sum('discount');
+        $sum5 = Testsaledetails::where('status',1)->sum('due');
+        return view('backend.outdoor.report.dignosisSale', compact('testSale','sum','sum2','sum3','sum4','sum5'));
     }
 }

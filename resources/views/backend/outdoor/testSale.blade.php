@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digonestic Test Sale</title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <title>Flat Able - Premium Admin Template by Phoenixcoded</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="Phoenixcoded" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+    <!-- vendor css -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/testSale.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <style>
+        button{
+            width: 100%;
+        }
+    </style>
+    
 </head>
-<body>
+<body class="">
+	
+	<!-- [ navigation menu ] start -->
+    @include('layouts.menu')
+	<!-- [ navigation menu ] end -->
 
-<div id="input-section">
-    <div class="container">
 
-<section id="account-section">
+    <section id="account-section">
   <div class="">
     <div class="row">
         <div class="col text-center">
@@ -28,6 +46,11 @@
     </div>
   </div>
 </section>
+	
+
+<div class="pcoded-main-container">
+<div id="input-section">
+    <div class="container">
 
         <h2 class="text-center display-4">Digonestic Test Salte Details</h2><hr>
         <a href="/dashboard"><button class="btn btn-success" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-down" viewBox="0 0 16 16">
@@ -154,11 +177,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class=" my-2 ">
-                                    <label for="" class="form-label display-4">Actual: {{$sum}}/-</label>
+                                    <label for="" class="form-label display-4 text-success">Actual: {{$sum}}/-</label>
                                     <input type="number" class="form-control" hidden disabled id="num1" name="txtTotal" value="{{$sum}}">
                                 </div>
                                 <div class=" my-2 ">
-                                    <p id="result" name="reminderAmount" class="display-4">Amount: 00/-</p>
+                                    <p id="result" name="reminderAmount" class="display-4 text-info">Amount: 00/-</p>
                                 </div>
                             </div>
                             <div class="col-md-6">                                
@@ -173,59 +196,28 @@
                             </div>                              
                         </div>
                     </div>
-                    <button class="btn btn-light btn-block mx-3" id="btnSave" disabled>Save</button>
+                    <button class="btn btn-success btn-block mx-3" id="btnSave" disabled>Save</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-
-<div id="show-investigation-test-sele-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-            <h2 class="text-center display-4 mt-4">Digonestic Test Sale Details</h2><hr>
-                <table class="table table-bordered bg-transparent text-dark">
-                    <thead class="text-center">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th class="text-left" scope="col">Patient Name</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Discount</th>
-                            <th scope="col">Received</th>
-                            <th scope="col">Due</th>
-                            <th scope="col">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-center">                            
-                        @foreach($testSale as $key => $val)
-                        <tr>
-                            <td scope="row">{{$key+1}}</td>
-                            <td class="text-left">{{$val->name}}</td>
-                            <td>{{$val->total}}/-</td>
-                            <td>{{$val->discount}}/-</td>
-                            <td>{{$val->pay}}/-</td>
-                            <td>{{$val->due}}/-</td>
-                            <!-- <td><span class="status {{ $val->duestatus == 0 ? 'paid' : 'due' }}">{{ $val->duestatus == 0 ? 'Paid' : 'Due' }}</span></td> -->
-                            <td>
-                                @if ($val->duestatus == 0)
-                                <span class="status paid">Paid</span>
-                                @elseif ($val->duestatus == 3)
-                                <span class="status return">return</span>
-                                @else
-                                    <a href="{{url('/deu-collection/'.$val->id)}}" class="status due ">Due</a>
-                                @endif
-                            </td>
-                        </tr>
-                        @endforeach                                
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+<br>
 </div>
-    
-    <script src="/js/testSale.js"></script>
+
+    <!-- Required Js -->
+    <script src="/assets/js/vendor-all.min.js"></script>
+    <script src="/assets/js/plugins/bootstrap.min.js"></script>
+    <script src="/assets/js/pcoded.min.js"></script>
+
+<!-- Apex Chart -->
+<script src="/assets/js/plugins/apexcharts.min.js"></script>
+
+
+<!-- custom-chart js -->
+<script src="/assets/js/pages/dashboard-main.js"></script>
+
+<script src="/js/testSale.js"></script>
 </body>
+
 </html>

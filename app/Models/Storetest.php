@@ -21,6 +21,7 @@ class Storetest extends Model
         'groupId',
         'room',
         'status',
+        'reportstatus',
     ];
 
     public function testdetails()

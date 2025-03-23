@@ -75,21 +75,29 @@
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-2">
                                     <label for="xxxxxxxx">Total</label>
                                     <input type="number" value="{{$val->total}}" class="form-control" disabled id="xxxxxxxx">
                                 </div>
-                                <div class="form-group col-md-3">
+                                <div class="form-group col-md-2">
+                                    <label for="xxxxxxxx">Due</label>
+                                    <input type="number" value="{{$val->due}}" class="form-control" disabled id="xxxxxxxx">
+                                </div>
+                                <div class="form-group col-md-2">
                                     <label for="xxxxxxxx">Discount</label>
                                     <input type="number" value="{{$val->discount}}" class="form-control" disabled id="xxxxxxxx">
                                 </div>
-                                <div class="form-group col-md-3">
+                                <div class="form-group col-md-2">
                                     <label for="xxxxxxxx">Payable</label>
                                     <input type="number" value="{{$val->payable}}" class="form-control" disabled id="xxxxxxxx">
                                 </div>
                                 <div class="form-group col-md-2">
                                     <label for="xxxxxxxx">Pay</label>
                                     <input type="number" value="{{$val->pay}}" class="form-control" disabled id="xxxxxxxx">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="xxxxxxxx">Return</label>
+                                    <input type="number" value="{{$val->return}}" class="form-control" disabled id="xxxxxxxx">
                                 </div>
                             </div>
                             <hr>

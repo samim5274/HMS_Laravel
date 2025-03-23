@@ -24,6 +24,7 @@ class CreateStoretestsTable extends Migration
             $table->integer('groupId');
             $table->integer('room');
             $table->integer('status');
+            $table->integer('reportstatus');
             $table->timestamps();
         });
     }

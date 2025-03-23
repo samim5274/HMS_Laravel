@@ -52,6 +52,7 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('/add-test-sale', [DignosisController::class, 'saleTest']);
 
     Route::get('/test-sale-view', [DignosisController::class, 'testSaleView'])->name('test.sale.View');
+    Route::get('/deu-collection-view', [DignosisController::class, 'deuCollectionView'])->name('test.sale.View');
     Route::get('/deu-collection/{id}', [DignosisController::class, 'deuCollection'])->name('due.collection.View');
     Route::get('/due-collection-update/{id}', [DignosisController::class, 'deuCollectionUpdate']);
 
@@ -62,5 +63,9 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('/test-cancel-view', [DignosisController::class, 'testCancelView'])->name('test.cancel.View');
     Route::get('/test-cancel/{id}', [DignosisController::class, 'testCancel']);
     Route::get('/test-cancel-status/{id}', [DignosisController::class, 'testCancelStatus']);
+
+    // report section routes
+
+    Route::get('/test-sale-report', [DignosisController::class, 'testSaleReport'])->name('test.sale.report.View');
 });
 

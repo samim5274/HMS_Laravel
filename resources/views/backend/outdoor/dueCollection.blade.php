@@ -4,26 +4,34 @@
 <head>
     <title>Flat Able - Premium Admin Template by Phoenixcoded</title>
     
+    <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="" />
     <meta name="keywords" content="">
     <meta name="author" content="Phoenixcoded" />
-    
+    <!-- Favicon icon -->
     <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
 
+    <!-- vendor css -->
     <link rel="stylesheet" href="/assets/css/style.css">
+
     <style>
         button{
             width: 100%;
         }
     </style>
-
+    
 </head>
-<body>
+<body class="">
+	
+	<!-- [ navigation menu ] start -->
+    @include('layouts.menu')
+	<!-- [ navigation menu ] end -->
 
-<section id="account-section">
+
+    <section id="account-section">
   <div class="">
     <div class="row">
         <div class="col text-center">
@@ -115,9 +123,10 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                         @endforeach 
                         </form>                        
-                    </div><a href="/test-sale-view"><button class="btn btn-info" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-down" viewBox="0 0 16 16">
+                    </div>
+                    <!-- <a href="/test-sale-view"><button class="btn btn-info" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-down" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M4.854 14.854a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V3.5A2.5 2.5 0 0 1 6.5 1h8a.5.5 0 0 1 0 1h-8A1.5 1.5 0 0 0 5 3.5v9.793l3.146-3.147a.5.5 0 0 1 .708.708z"/>
-                </svg> Back</button></a>
+                </svg> Back</button></a> -->
                 </div>
             </div>
         </div>
@@ -163,14 +172,20 @@
 </section>
 
 
+
     <!-- Required Js -->
-    <script src="assets/js/vendor-all.min.js"></script>
-    <script src="assets/js/plugins/bootstrap.min.js"></script>
-    <script src="assets/js/pcoded.min.js"></script>
+    <script src="/assets/js/vendor-all.min.js"></script>
+    <script src="/assets/js/plugins/bootstrap.min.js"></script>
+    <script src="/assets/js/pcoded.min.js"></script>
 
-    <script src="/js/testSale.js"></script>
+<!-- Apex Chart -->
+<script src="/assets/js/plugins/apexcharts.min.js"></script>
 
 
+<!-- custom-chart js -->
+<script src="/assets/js/pages/dashboard-main.js"></script>
+
+<script src="/js/testSale.js"></script>
 </body>
 
 </html>

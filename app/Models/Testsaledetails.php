@@ -27,8 +27,8 @@ class Testsaledetails extends Model
         'pay',
         'duestatus',
         'due',
-        'reportstatus',
-        'teststatus',
+        'return',
+        'status',
     ];
 
     // public function storetest()
