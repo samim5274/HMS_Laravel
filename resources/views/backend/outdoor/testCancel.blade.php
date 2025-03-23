@@ -47,8 +47,7 @@
                         <!-- <h5 class="mt-2 text-center display-4">Test Return</h5> -->
                         <h5 class="mt-2">Patient Detail's</h5>
                         <hr>
-                        <form method="GET" action="/due-collection-update/{{$testSale[0]->id}}" enctype="multipart/from-data">
-                        @foreach($testSale as $key => $val)
+                        @foreach($data as $key => $val)
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail4">Full Name</label>
@@ -103,37 +102,28 @@
                                             <th>Reg. No</th>
                                             <th>Test Name</th>
                                             <th class="text-right">Price</th>
-                                            <th class="text-right">Return</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($storeTest as $key => $val)
+                                        @foreach($storeTests as $key => $vals)
                                         <tr>
                                             <td scope="row">{{$key+1}}</td>
-                                            <td class="text-left">{{$val->regNum}}</td>
-                                            <td class="text-left">{{$val->testdetails->testName}}</td>
-                                            <td class="text-right">{{$val->testprice}}/-</td>
-                                            <td class="text-right">
-                                                @if($val->status == 0)
-                                                <a href="#" class="text-danger">Returns</a>
-                                                @else
-                                                <a href="{{url('/test-return-status/'.$val->id)}}" class="">Not Return</a>
-                                                @endif                                                
-                                            </td>
+                                            <td class="text-left">{{$vals->regNum}}</td>
+                                            <td class="text-left">{{$vals->testdetails->testName}}</td>
+                                            <td class="text-right">{{$vals->testprice}}/-</td>
                                         </tr>
                                         @endforeach  
                                         <tr>
-                                            <td colspan="2">Total Amount</td>
-                                            <td class="text-right" colspan="2"><b>${{$sum}}/-</b></td>
-                                            <td></td>
+                                            <td colspan="2"></td>
+                                            <td>Total Amount</td>
+                                            <td class="text-right" colspan=""><b>${{$sum}}/-</b></td>
                                         </tr>  
                                     </tbody>                                    
                                 </table>
                             </div>
-                            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-                        @endforeach 
-                        </form>                        
-                    </div><a href="/test-sale-return-view"><button class="btn btn-info" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-down" viewBox="0 0 16 16">
+                            <a href="{{url('/test-cancel-status/'.$val->id)}}"><button class="btn btn-danger">Cancel Dignostics Test</button></a>
+                        @endforeach      
+                    </div><a href="/test-cancel-view"><button class="btn btn-info" type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-90deg-down" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M4.854 14.854a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V3.5A2.5 2.5 0 0 1 6.5 1h8a.5.5 0 0 1 0 1h-8A1.5 1.5 0 0 0 5 3.5v9.793l3.146-3.147a.5.5 0 0 1 .708.708z"/>
                 </svg> Back</button></a>
                 </div>

@@ -211,6 +211,8 @@
                             <td>
                                 @if ($val->duestatus == 0)
                                 <span class="status paid">Paid</span>
+                                @elseif ($val->duestatus == 3)
+                                <span class="status return">return</span>
                                 @else
                                     <a href="{{url('/deu-collection/'.$val->id)}}" class="status due ">Due</a>
                                 @endif

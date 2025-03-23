@@ -68,11 +68,11 @@
 					<li class="nav-item pcoded-hasmenu">
 						<a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Outdoor</span></a>
 						<ul class="pcoded-submenu">
-							<li><a href="/test-details">Test Details</a></li>
-							<li><a href="/test-sale-view">Test Sale</a></li>
+                            <li><a href="/test-sale-view">Test Sale</a></li>
 							<li><a href="/test-sale-return-view">Test Return</a></li>
-							<li><a href="#">Test Calcel</a></li>
+							<li><a href="/test-cancel-view">Test Calcel</a></li>
 							<li><a href="#">Report</a></li>
+							<li><a href="/test-details">Test Details</a></li>
 							<li><a href="/dignosis-test-setting">Settings</a></li>
 						</ul>
 					</li>

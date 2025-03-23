@@ -312,26 +312,75 @@ class DignosisController extends Controller
         $testSale = Testsaledetails::where('reg', $data->regNum)->get();
         $total = $testSale[0]->total;
         $payable = $testSale[0]->payable;
-        $discounts = $testSale[0]->discount;
+        $discount = $testSale[0]->discount;
         $due = $testSale[0]->due;
         $pay = $testSale[0]->pay;
-
         
-        // $price = $data->testprice;
-        // $totals = ($total - $discounts);
-        // $payables = ($payable + $discounts) - $price; 
-
         $price = $data->testprice;
-        $payables = $payable - $price ;
-        $totals = $total - $discounts;
-        
-        // $testSale[0]->total = $totals;
-        // $testSale[0]->payable = $payables;
 
-        dd('Payable:'.$payables, 'Return:'.$price,'Total:'.$totals);
+        if($price <= $discount)
+        {
+            $discount = 0;
+            $payable = $payable - $price;
+            $total = $total - $price;
+            $pay = $pay - $price;
+        }
+        elseif($total - $price <= $discount)
+        {
+            $discount = 0;
+            $payable = $payable - $price;
+            $total = $total - $price;
+            $pay = $pay - $price;
+        }
+        else{
+            $payable = $payable - $price - $discount;
+            $total = $total - $price - $discount;
+            $pay = $pay - $price;
+        }
+                
+        
+        $testSale[0]->total = $total;
+        $testSale[0]->payable = $payable;
+        $testSale[0]->discount = $discount;
+        $testSale[0]->pay = $pay;
+
+        dd('Payable:'.$payable, 'Return:'.$price,'Total:'.$total, 'Discount:'.$discount, 'Pay:'.$pay);
         $data->status = 0;
         // $testSale[0]->update();
         // $data->update();
         return redirect()->back()->with('success', 'Test return successfully');
+    }
+
+    public function testCancelView()
+    {
+        $testSale = Testsaledetails::all();
+        return view('backend.outdoor.testCancelView', compact('testSale'));
+    }
+
+    public function testCancel(Request $request, $id)
+    {
+        $data = Testsaledetails::where('reg',$id)->get();
+        $storeTests = Storetest::with('testdetails')->where('regNum', $id)->get();
+        $sum = Storetest::where('regNum', $id)->where('status',1)->sum('testprice');
+        return view('backend.outdoor.testCancel', compact('data','storeTests','sum'));
+    }
+
+    public function testCancelStatus(Request $request, $id)
+    {
+        $data = Testsaledetails::where('id',$id)->first();
+        if($data->status == '0')
+        {
+            $testStore = Storetest::with('testdetails')->where('regNum', $data->reg)->update(['status' => 0]);
+            $data->teststatus = 0;
+            $data->pay = -($data->pay);
+            $data->due = 0;
+            $data->duestatus = 3;
+            $data->update();
+            return redirect()->back()->with('success', 'Test cancel successfully');
+        }
+        else
+        {
+            return redirect()->back()->with('error', 'Test already canceled! Please try to another patient. Thank you!');
+        }
     }
 }
