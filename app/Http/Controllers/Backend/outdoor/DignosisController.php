@@ -16,6 +16,7 @@ use App\Models\Reference;
 use App\Models\Storetest;
 use App\Models\Testsaledetails;
 use Auth;
+use App\Models\Admin;
 
 class DignosisController extends Controller
 {
@@ -234,6 +235,8 @@ class DignosisController extends Controller
      
         $data->status = 1;
         $data->return = 0;
+        $data->userId = Auth::guard('admin')->user()->id;
+            
         if($total <= 0){
             return redirect()->back()->with('error', 'Please add test first');
         }
@@ -414,33 +417,4 @@ class DignosisController extends Controller
         }
     }
 
-    public function testSaleReport()
-    {
-        $today = date('Y-m-d');
-        $last7days = date('Y-m-d', strtotime('-7 days'));
-        $last30days = date('Y-m-d', strtotime('-30 days'));
-        
-        $testSale = Testsaledetails::where('status',1)->where('date',$today)->get();
-        $sum = Testsaledetails::where('status',1)->where('date',$today)->sum('pay');
-        $sum2 = Testsaledetails::where('status',1)->where('date',$today)->sum('payable');
-        $sum3 = Testsaledetails::where('status',1)->where('date',$today)->sum('total');
-        $sum4 = Testsaledetails::where('status',1)->where('date',$today)->sum('discount');
-        $sum5 = Testsaledetails::where('status',1)->where('date',$today)->sum('due');
-        
-        $data7days = Testsaledetails::where('status',1)->whereBetween('date',[$last7days,$today])->get();
-        $sum6 = Testsaledetails::where('status',1)->whereBetween('date',[$last7days,$today])->sum('pay');
-        $sum7 = Testsaledetails::where('status',1)->whereBetween('date',[$last7days,$today])->sum('payable');
-        $sum8 = Testsaledetails::where('status',1)->whereBetween('date',[$last7days,$today])->sum('total');
-        $sum9 = Testsaledetails::where('status',1)->whereBetween('date',[$last7days,$today])->sum('discount');
-        $sum10 = Testsaledetails::where('status',1)->whereBetween('date',[$last7days,$today])->sum('due');
-
-        $data30days = Testsaledetails::where('status',1)->whereBetween('date',[$last30days,$today])->get();
-        $sum11 = Testsaledetails::where('status',1)->whereBetween('date',[$last30days,$today])->sum('pay');
-        $sum12 = Testsaledetails::where('status',1)->whereBetween('date',[$last30days,$today])->sum('payable');
-        $sum13 = Testsaledetails::where('status',1)->whereBetween('date',[$last30days,$today])->sum('total');
-        $sum14 = Testsaledetails::where('status',1)->whereBetween('date',[$last30days,$today])->sum('discount');
-        $sum15 = Testsaledetails::where('status',1)->whereBetween('date',[$last30days,$today])->sum('due');
-
-        return view('backend.outdoor.report.dignosisSale', compact('testSale','data7days','data30days','sum','sum2','sum3','sum4','sum5','sum6','sum7','sum8','sum9','sum10','sum11','sum12','sum13','sum14','sum15'));
-    }
 }

@@ -59,9 +59,14 @@
 						<a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Account Reports</span></a>
 						<ul class="pcoded-submenu">
 							<li><a href="/test-sale-report">Total Sale</a></li>
-							<li><a href="#">Day wise Sale </a></li>
-							<li><a href="#">User wise Sale</a></li>
+							<li><a href="/day-wise-sale-report">Day wise Sale </a></li>
+							<li><a href="/user-wise-report-view">User wise Sale</a></li>
+							<li><a href="/due-report">Total Due</a></li>
+							<li><a href="/day-wise-due-report">Day wise Deu</a></li>
+							<li><a href="#">User wise Deu</a></li>
 							<li><a href="#">Day wise Cancel</a></li>
+							<li><a href="#">User wise Cancel</a></li>
+							<li><a href="#">Total Cancel</a></li>
 						</ul>
 					</li>
 					<li class="nav-item pcoded-menu-caption">

@@ -32,6 +32,7 @@ class CreateTestsaledetailsTable extends Migration
             $table->integer('due');
             $table->integer('return');
             $table->integer('status');
+            $table->integer('userId');
             $table->timestamps();
         });
     }

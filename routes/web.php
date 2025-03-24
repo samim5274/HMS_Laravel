@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Admin\AdminController;
 use App\Http\Controllers\Backend\outdoor\DignosisController;
+use App\Http\Controllers\Backend\outdoor\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,12 @@ Route::group(['middleware'=>'admin'], function(){
 
     // report section routes
 
-    Route::get('/test-sale-report', [DignosisController::class, 'testSaleReport'])->name('test.sale.report.View');
+    Route::get('/test-sale-report', [ReportController::class, 'testSaleReport'])->name('test.sale.report.View');
+    Route::get('/day-wise-sale-report', [ReportController::class, 'dayWiseSaleReport'])->name('day.wise.sale.report.View');
+    Route::get('/search-date-wise-report', [ReportController::class, 'searchDateWiseReport']);
+    Route::get('/user-wise-report-view', [ReportController::class, 'userWiseReportView']);
+    Route::get('/user-wise-report', [ReportController::class, 'userWiseReport']);
+    Route::get('/due-report', [ReportController::class, 'dueReport']);
+    Route::get('/day-wise-due-report', [ReportController::class, 'dayWisedueReport']);
 });
 

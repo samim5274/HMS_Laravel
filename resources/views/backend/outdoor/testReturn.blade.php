@@ -47,7 +47,7 @@
                         <!-- <h5 class="mt-2 text-center display-4">Test Return</h5> -->
                         <h5 class="mt-2">Patient Detail's</h5>
                         <hr>
-                        <form method="GET" action="/due-collection-update/{{$testSale[0]->id}}" enctype="multipart/from-data">
+                        <form method="GET" action="#" enctype="multipart/from-data">
                         @foreach($testSale as $key => $val)
                             <div class="form-row">
                                 <div class="form-group col-md-6">

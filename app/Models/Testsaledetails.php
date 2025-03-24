@@ -29,6 +29,7 @@ class Testsaledetails extends Model
         'due',
         'return',
         'status',
+        'userId',
     ];
 
     // public function storetest()

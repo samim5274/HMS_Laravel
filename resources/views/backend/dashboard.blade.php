@@ -45,7 +45,7 @@
                             <h5 class="m-b-10">Dashboard Analytics</h5>
                         </div>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="/dashboard"><i class="feather icon-home"></i></a></li>
                             <li class="breadcrumb-item"><a href="#!">Dashboard Analytics</a></li>
                         </ul>
                     </div>
