@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2025 at 10:36 AM
+-- Generation Time: Mar 23, 2025 at 07:45 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -46,7 +46,8 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`id`, `name`, `email`, `password`, `status`, `superAdmin`, `photo`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'SAMIM', 'samim@gmail.com', '$2y$10$jQTOpv4gWnSNN3QC4LDl5e3EL.lZVF1Ih0VpSSX6ulrV7E4vELsli', 1, 1, NULL, NULL, '2025-02-18 23:09:08', '2025-02-18 23:09:08'),
-(4, 'Taslima', 'samim2@gmail.com', '$2y$10$uwMYszs9PFZ43Qq6xu15H.eGBOLVRcqifrMzs5TIBEZkC9iL1zIly', 1, 1, NULL, NULL, '2025-02-18 23:15:17', '2025-02-18 23:15:17');
+(4, 'Taslima', 'samim2@gmail.com', '$2y$10$uwMYszs9PFZ43Qq6xu15H.eGBOLVRcqifrMzs5TIBEZkC9iL1zIly', 1, 1, NULL, NULL, '2025-02-18 23:15:17', '2025-02-18 23:15:17'),
+(5, 'farjana', 'farjana@gmail.com', '$2y$10$y6gNb0lQoMpaAyh/WDy5LewFX0wSCtILe3yX438pu0ZaQ3KcddlQS', 1, 1, NULL, NULL, '2025-03-23 07:08:07', '2025-03-23 07:08:07');
 
 -- --------------------------------------------------------
 
@@ -268,7 +269,7 @@ INSERT INTO `specimens` (`id`, `name`, `created_at`, `updated_at`) VALUES
 
 CREATE TABLE `storetests` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `regNum` int(11) NOT NULL,
+  `regNum` bigint(20) NOT NULL,
   `testId` int(11) NOT NULL,
   `testprice` int(11) NOT NULL,
   `categoryId` int(11) NOT NULL,
@@ -304,7 +305,23 @@ INSERT INTO `storetests` (`id`, `regNum`, `testId`, `testprice`, `categoryId`, `
 (18, 2025032345, 3, 450, 1, 1, 1, 2, 103, 1, 0, '2025-03-23 02:44:50', '2025-03-23 02:44:50'),
 (22, 2025032346, 2, 200, 1, 1, 1, 1, 103, 1, 0, '2025-03-23 02:55:00', '2025-03-23 02:55:00'),
 (23, 2025032346, 3, 450, 1, 1, 1, 2, 103, 1, 0, '2025-03-23 02:55:02', '2025-03-23 02:55:02'),
-(27, 2025032348, 3, 450, 1, 1, 1, 2, 103, 1, 0, '2025-03-23 03:13:00', '2025-03-23 03:13:00');
+(27, 2025032348, 3, 450, 1, 1, 1, 2, 103, 1, 0, '2025-03-23 03:13:00', '2025-03-23 03:13:00'),
+(30, 2025032359, 4, 5400, 2, 7, 8, 2, 103, 1, 0, '2025-03-23 09:11:56', '2025-03-23 09:11:56'),
+(31, 2025032359, 5, 5000, 2, 6, 11, 5, 103, 1, 0, '2025-03-23 09:11:58', '2025-03-23 09:11:58'),
+(32, 2025032359, 7, 2500, 2, 7, 4, 6, 103, 1, 0, '2025-03-23 09:12:01', '2025-03-23 09:12:01'),
+(33, 2025032359, 1, 650, 1, 1, 1, 1, 103, 1, 0, '2025-03-23 09:12:03', '2025-03-23 09:12:03'),
+(34, 2025032359, 6, 1300, 2, 6, 7, 6, 103, 1, 0, '2025-03-23 09:12:09', '2025-03-23 09:12:09'),
+(35, 2025032359, 3, 450, 1, 1, 1, 2, 103, 1, 0, '2025-03-23 09:12:32', '2025-03-23 09:12:32'),
+(36, 2025032359, 2, 200, 1, 1, 1, 1, 103, 1, 0, '2025-03-23 09:12:34', '2025-03-23 09:12:34'),
+(37, 20250323510, 2, 200, 1, 1, 1, 1, 103, 0, 0, '2025-03-23 09:40:11', '2025-03-23 09:45:53'),
+(38, 20250323510, 7, 2500, 2, 7, 4, 6, 103, 0, 0, '2025-03-23 09:40:41', '2025-03-23 09:45:53'),
+(39, 20250323510, 4, 5400, 2, 7, 8, 2, 103, 0, 0, '2025-03-23 09:42:09', '2025-03-23 09:45:53'),
+(40, 20250323510, 6, 1300, 2, 6, 7, 6, 103, 0, 0, '2025-03-23 09:42:11', '2025-03-23 09:45:53'),
+(41, 20250323510, 5, 5000, 2, 6, 11, 5, 103, 0, 0, '2025-03-23 09:42:14', '2025-03-23 09:45:53'),
+(42, 2025032411, 2, 200, 1, 1, 1, 1, 103, 1, 0, '2025-03-23 18:26:04', '2025-03-23 18:26:04'),
+(43, 2025032411, 5, 5000, 2, 6, 11, 5, 103, 1, 0, '2025-03-23 18:26:06', '2025-03-23 18:26:06'),
+(44, 2025032411, 8, 3200, 2, 7, 8, 2, 103, 1, 0, '2025-03-23 18:26:08', '2025-03-23 18:26:08'),
+(45, 2025032411, 6, 1300, 2, 6, 7, 6, 103, 1, 0, '2025-03-23 18:26:11', '2025-03-23 18:26:11');
 
 -- --------------------------------------------------------
 
@@ -365,7 +382,12 @@ CREATE TABLE `testdetails` (
 INSERT INTO `testdetails` (`id`, `testName`, `categoryId`, `subcategoryId`, `specimenId`, `groupId`, `testPrice`, `rprice`, `room`, `testDescription`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'ABO', 1, 1, 1, 1, 650.00, 500.00, '103', 'Test Description', 1, '2025-02-25 04:20:05', '2025-02-25 04:20:05'),
 (2, 'RBS', 1, 1, 1, 1, 200.00, 100.00, '103', 'Test Description', 2, '2025-02-25 04:26:17', '2025-02-25 04:26:17'),
-(3, 'HbsAg', 1, 1, 1, 2, 450.00, 400.00, '103', 'Test Description', 2, '2025-02-25 04:26:47', '2025-02-25 04:26:47');
+(3, 'HbsAg', 1, 1, 1, 2, 450.00, 400.00, '103', 'Test Description', 2, '2025-02-25 04:26:47', '2025-02-25 04:26:47'),
+(4, '3D x-ray', 2, 7, 8, 2, 5400.00, 1000.00, '103', 'Test Description', 1, '2025-03-23 09:08:25', '2025-03-23 09:08:25'),
+(5, 'USG', 2, 6, 11, 5, 5000.00, 100.00, '103', 'Test Description', 1, '2025-03-23 09:10:01', '2025-03-23 09:10:01'),
+(6, 'Anesthesia for CT.Scan of Brain', 2, 6, 7, 6, 1300.00, 300.00, '103', 'Test Description', 2, '2025-03-23 09:11:09', '2025-03-23 09:11:09'),
+(7, 'Anesthesia for CT.Scan of Brain + EEG', 2, 7, 4, 6, 2500.00, 750.00, '103', 'Test Description', 1, '2025-03-23 09:11:40', '2025-03-23 09:11:40'),
+(8, 'CT.Scan Color', 2, 7, 8, 2, 3200.00, 800.00, '103', 'Test Description', 1, '2025-03-23 09:53:32', '2025-03-23 09:53:32');
 
 -- --------------------------------------------------------
 
@@ -375,7 +397,7 @@ INSERT INTO `testdetails` (`id`, `testName`, `categoryId`, `subcategoryId`, `spe
 
 CREATE TABLE `testsaledetails` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `reg` int(11) NOT NULL,
+  `reg` bigint(20) NOT NULL,
   `date` date NOT NULL,
   `name` varchar(255) NOT NULL,
   `dob` varchar(255) NOT NULL,
@@ -407,8 +429,11 @@ INSERT INTO `testsaledetails` (`id`, `reg`, `date`, `name`, `dob`, `gender`, `ph
 (4, 2025032344, '2025-03-23', 'Farjana Akter', '2001-12-31', 'Female', 6549871, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 4, 1, 1300, 500, 800, 800, 0, 0, 0, 1, '2025-03-23 02:17:38', '2025-03-23 02:37:29'),
 (5, 2025032345, '2025-03-23', 'Shamim Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 4, 4, 1300, 500, 800, 600, 1, 200, 0, 1, '2025-03-23 02:45:06', '2025-03-23 03:20:09'),
 (6, 2025032346, '2025-03-23', 'Shamim Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 2, 1, 650, 150, 500, 500, 0, 0, 0, 1, '2025-03-23 02:55:24', '2025-03-23 02:55:38'),
-(7, 2025032347, '2025-03-23', 'Shamim Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 5, 5, 0, 0, 0, 0, 0, 0, 0, 1, '2025-03-23 03:11:16', '2025-03-23 03:11:16'),
-(8, 2025032348, '2025-03-23', 'Shofik Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 1, 2, 450, 50, 400, 400, 0, 0, 0, 1, '2025-03-23 03:13:25', '2025-03-23 03:19:13');
+(7, 2025032347, '2025-03-23', 'Shamim Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 5, 5, 0, 0, 0, 0, 3, 0, 0, 0, '2025-03-23 03:11:16', '2025-03-23 09:04:33'),
+(8, 2025032348, '2025-03-23', 'Shofik Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 1, 2, 450, 50, 400, 400, 0, 0, 0, 1, '2025-03-23 03:13:25', '2025-03-23 03:19:13'),
+(9, 2025032359, '2025-03-23', 'Rokonzzaman Rokon', '2001-12-31', 'Male', 1365478952, 'Chaparajshai, Rajshahi, Bangladesh', 3, 3, 15500, 1500, 14000, 10000, 1, 4000, 0, 1, '2025-03-23 09:13:41', '2025-03-23 09:13:41'),
+(10, 20250323510, '2025-03-23', 'Ashraful Islam', '2001-12-04', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 5, 5, 14400, 3400, 11000, 0, 3, 0, 10500, 0, '2025-03-23 09:43:35', '2025-03-23 09:45:53'),
+(11, 2025032411, '2025-03-24', 'Rahi Akter', '2001-12-31', 'Female', 156321478, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 4, 1, 9700, 700, 9000, 5000, 1, 4000, 0, 1, '2025-03-23 18:26:49', '2025-03-23 18:26:49');
 
 -- --------------------------------------------------------
 
@@ -534,7 +559,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -588,7 +613,7 @@ ALTER TABLE `specimens`
 -- AUTO_INCREMENT for table `storetests`
 --
 ALTER TABLE `storetests`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `subcategories`
@@ -600,13 +625,13 @@ ALTER TABLE `subcategories`
 -- AUTO_INCREMENT for table `testdetails`
 --
 ALTER TABLE `testdetails`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `testsaledetails`
 --
 ALTER TABLE `testsaledetails`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`

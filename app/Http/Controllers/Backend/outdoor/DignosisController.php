@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend\outdoor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 use App\Models\Category;
 use App\Models\Specimen;
@@ -151,7 +152,7 @@ class DignosisController extends Controller
         $userId = Auth::guard('admin')->user()->id;
         $sl = Testsaledetails::where('date', date('Y-m-d'))->count();
         $invoice = date('Ymd').$userId.$sl+1;
-
+        //dd($invoice);
         $findTest = Storetest::where('testId', $data->id)->where('regNum', $invoice)->first();
         if($findTest){
             return redirect()->back()->with('error', 'Test already added');
@@ -395,6 +396,7 @@ class DignosisController extends Controller
         {
             return redirect()->back()->with('error', 'Test already reported! Please try to another patient. Thank you!');
         }
+
         if($data->status == '1')
         {
             $testStore = Storetest::with('testdetails')->where('regNum', $data->reg)->update(['status' => 0]);
@@ -414,12 +416,31 @@ class DignosisController extends Controller
 
     public function testSaleReport()
     {
-        $testSale = Testsaledetails::where('status',1)->where('status',1)->get();
-        $sum = Testsaledetails::where('status',1)->sum('pay');
-        $sum2 = Testsaledetails::where('status',1)->sum('payable');
-        $sum3 = Testsaledetails::where('status',1)->sum('total');
-        $sum4 = Testsaledetails::where('status',1)->sum('discount');
-        $sum5 = Testsaledetails::where('status',1)->sum('due');
-        return view('backend.outdoor.report.dignosisSale', compact('testSale','sum','sum2','sum3','sum4','sum5'));
+        $today = date('Y-m-d');
+        $last7days = date('Y-m-d', strtotime('-7 days'));
+        $last30days = date('Y-m-d', strtotime('-30 days'));
+        
+        $testSale = Testsaledetails::where('status',1)->where('date',$today)->get();
+        $sum = Testsaledetails::where('status',1)->where('date',$today)->sum('pay');
+        $sum2 = Testsaledetails::where('status',1)->where('date',$today)->sum('payable');
+        $sum3 = Testsaledetails::where('status',1)->where('date',$today)->sum('total');
+        $sum4 = Testsaledetails::where('status',1)->where('date',$today)->sum('discount');
+        $sum5 = Testsaledetails::where('status',1)->where('date',$today)->sum('due');
+        
+        $data7days = Testsaledetails::where('status',1)->whereBetween('date',[$last7days,$today])->get();
+        $sum6 = Testsaledetails::where('status',1)->whereBetween('date',[$last7days,$today])->sum('pay');
+        $sum7 = Testsaledetails::where('status',1)->whereBetween('date',[$last7days,$today])->sum('payable');
+        $sum8 = Testsaledetails::where('status',1)->whereBetween('date',[$last7days,$today])->sum('total');
+        $sum9 = Testsaledetails::where('status',1)->whereBetween('date',[$last7days,$today])->sum('discount');
+        $sum10 = Testsaledetails::where('status',1)->whereBetween('date',[$last7days,$today])->sum('due');
+
+        $data30days = Testsaledetails::where('status',1)->whereBetween('date',[$last30days,$today])->get();
+        $sum11 = Testsaledetails::where('status',1)->whereBetween('date',[$last30days,$today])->sum('pay');
+        $sum12 = Testsaledetails::where('status',1)->whereBetween('date',[$last30days,$today])->sum('payable');
+        $sum13 = Testsaledetails::where('status',1)->whereBetween('date',[$last30days,$today])->sum('total');
+        $sum14 = Testsaledetails::where('status',1)->whereBetween('date',[$last30days,$today])->sum('discount');
+        $sum15 = Testsaledetails::where('status',1)->whereBetween('date',[$last30days,$today])->sum('due');
+
+        return view('backend.outdoor.report.dignosisSale', compact('testSale','data7days','data30days','sum','sum2','sum3','sum4','sum5','sum6','sum7','sum8','sum9','sum10','sum11','sum12','sum13','sum14','sum15'));
     }
 }

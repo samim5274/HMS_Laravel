@@ -58,11 +58,10 @@
                     <li class="nav-item pcoded-hasmenu">
 						<a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Account Reports</span></a>
 						<ul class="pcoded-submenu">
-							<li><a href="/test-sale-report">Dignosis Sale</a></li>
-							<li><a href="#">Due</a></li>
-							<li><a href="#">Test Return</a></li>
-							<li><a href="#">Cancel Test</a></li>
-							<li><a href="#">Total Balance</a></li>
+							<li><a href="/test-sale-report">Total Sale</a></li>
+							<li><a href="#">Day wise Sale </a></li>
+							<li><a href="#">User wise Sale</a></li>
+							<li><a href="#">Day wise Cancel</a></li>
 						</ul>
 					</li>
 					<li class="nav-item pcoded-menu-caption">
