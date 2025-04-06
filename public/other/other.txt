@@ -1,19 +1,2 @@
-@foreach($testSale as $key => $val)
-                                                        <tr>
-                                                            <td>{{$key+1}}</td>
-                                                            <td>{{$val->name}}</td>
-                                                            <td class="text-center">{{$val->total}}/-</td>
-                                                            <td class="text-center">{{$val->discount}}/-</td>
-                                                            <td class="text-center">{{$val->due}}/-</td>
-                                                            <td class="text-center">{{$val->payable}}/-</td>
-                                                            <td class="text-right">{{$val->pay}}/-</td>
-                                                        </tr>   
-                                                        @endforeach 
-                                                        <tr>
-                                                            <td colspan="2"><strong>Total: </strong></td>
-                                                            <td class="text-center"><strong>{{$sum3}}/-</td>
-                                                            <td class="text-center"><strong>{{$sum4}}/-</strong></td>
-                                                            <td class="text-center"><strong>{{$sum4}}/-</strong></td>
-                                                            <td class="text-center"><strong>{{$sum2}}/-</strong></td>
-                                                            <td class="text-right"><strong>{{$sum}}/-</strong></td>
-                                                        </tr>  
+
+

@@ -23,4 +23,9 @@ class Admin extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function refercost()
+    {
+        return $this->hasMany(Admin::class, 'userId', 'id');
+    }
 }

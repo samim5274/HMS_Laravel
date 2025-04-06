@@ -14,4 +14,9 @@ class Reference extends Model
         'refAddress',
         'refPhone',
     ];
+
+    public function refercost()
+    {
+        return $this->hasMany(Reference::class, 'referId', 'id');
+    }
 }

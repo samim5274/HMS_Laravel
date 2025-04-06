@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 24, 2025 at 10:10 AM
+-- Generation Time: Mar 30, 2025 at 02:04 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -102,6 +102,72 @@ INSERT INTO `doctors` (`id`, `doctName`, `doctDesignation`, `doctPhone`, `doctFe
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `excategories`
+--
+
+CREATE TABLE `excategories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `category` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `excategories`
+--
+
+INSERT INTO `excategories` (`id`, `category`, `created_at`, `updated_at`) VALUES
+(1, 'Entertainment', '2025-03-30 12:02:37', '2025-03-30 12:02:37'),
+(2, 'Food', '2025-03-30 12:02:40', '2025-03-30 12:02:40'),
+(3, 'Fuel', '2025-03-30 12:02:42', '2025-03-30 12:02:42');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `expenses`
+--
+
+CREATE TABLE `expenses` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `userId` int(11) NOT NULL,
+  `catId` int(11) NOT NULL,
+  `subCatId` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `remark` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exsubcategories`
+--
+
+CREATE TABLE `exsubcategories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `categoryId` int(11) NOT NULL,
+  `subcategory` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `exsubcategories`
+--
+
+INSERT INTO `exsubcategories` (`id`, `categoryId`, `subcategory`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Birthday Party', '2025-03-30 12:02:48', '2025-03-30 12:02:48'),
+(2, 1, 'Office Party', '2025-03-30 12:02:58', '2025-03-30 12:02:58'),
+(3, 2, 'Evening Food', '2025-03-30 12:03:03', '2025-03-30 12:03:03'),
+(4, 3, 'Car Fuel', '2025-03-30 12:03:12', '2025-03-30 12:03:12'),
+(5, 3, 'Generator Fuel', '2025-03-30 12:03:17', '2025-03-30 12:03:17');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -171,8 +237,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (15, '2025_02_25_101703_create_testdetails_table', 5),
 (16, '2025_02_25_181245_create_doctors_table', 6),
 (17, '2025_02_25_184929_create_references_table', 7),
-(36, '2025_02_26_062433_create_storetests_table', 8),
-(37, '2025_02_26_065804_create_testsaledetails_table', 8);
+(42, '2025_02_26_062433_create_storetests_table', 8),
+(43, '2025_02_26_065804_create_testsaledetails_table', 8),
+(46, '2025_03_28_023545_create_refercosts_table', 9),
+(50, '2025_03_30_153629_create_expenses_table', 10),
+(51, '2025_03_30_171123_create_excategories_table', 10),
+(52, '2025_03_30_171257_create_exsubcategories_table', 10);
 
 -- --------------------------------------------------------
 
@@ -203,6 +273,41 @@ CREATE TABLE `personal_access_tokens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `refercosts`
+--
+
+CREATE TABLE `refercosts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `date` date NOT NULL,
+  `regNum` int(11) NOT NULL,
+  `patientId` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `referId` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `paid` int(11) NOT NULL,
+  `remarks` varchar(255) DEFAULT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'unpaid',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `refercosts`
+--
+
+INSERT INTO `refercosts` (`id`, `date`, `regNum`, `patientId`, `userId`, `referId`, `amount`, `paid`, `remarks`, `status`, `created_at`, `updated_at`) VALUES
+(1, '2025-03-12', 2025032851, 1, 1, 1, 400, 400, 'Full Paid', '1', '2025-03-28 19:45:17', '2025-03-28 19:45:17'),
+(2, '2025-03-27', 2025032852, 2, 1, 1, 1320, 1320, 'Full Paid', '1', '2025-03-28 19:45:23', '2025-03-28 19:45:23'),
+(3, '2025-03-29', 2025032914, 8, 1, 1, 1000, 1000, 'Full Paid', '1', '2025-03-28 19:45:29', '2025-03-28 19:45:29'),
+(4, '2025-03-29', 2025032912, 6, 1, 4, 850, 850, 'Full Paid', '1', '2025-03-28 19:46:57', '2025-03-28 19:46:57'),
+(5, '2025-03-29', 2025032854, 4, 1, 2, 70, 70, 'Full Paid', '1', '2025-03-28 19:47:07', '2025-03-28 19:47:07'),
+(6, '2025-03-29', 2025032915, 9, 1, 5, 300, 300, 'Full Paid', '1', '2025-03-28 21:02:41', '2025-03-28 21:02:41'),
+(7, '2025-03-29', 2025032913, 7, 1, 3, 200, 200, 'Full Paid', '1', '2025-03-28 21:22:27', '2025-03-28 21:22:27'),
+(8, '2025-03-29', 2025032916, 10, 1, 4, 820, 820, 'N/A', '1', '2025-03-28 21:23:58', '2025-03-28 21:23:58');
 
 -- --------------------------------------------------------
 
@@ -272,6 +377,7 @@ CREATE TABLE `storetests` (
   `regNum` int(11) NOT NULL,
   `testId` int(11) NOT NULL,
   `testprice` int(11) NOT NULL,
+  `referprice` int(11) NOT NULL,
   `categoryId` int(11) NOT NULL,
   `subcategoryId` int(11) NOT NULL,
   `specimenId` int(11) NOT NULL,
@@ -287,19 +393,29 @@ CREATE TABLE `storetests` (
 -- Dumping data for table `storetests`
 --
 
-INSERT INTO `storetests` (`id`, `regNum`, `testId`, `testprice`, `categoryId`, `subcategoryId`, `specimenId`, `groupId`, `room`, `status`, `reportstatus`, `created_at`, `updated_at`) VALUES
-(1, 2025032451, 2, 200, 1, 1, 1, 1, 103, 1, 0, '2025-03-24 06:49:45', '2025-03-24 06:49:45'),
-(2, 2025032451, 4, 5400, 2, 7, 8, 2, 103, 1, 0, '2025-03-24 06:49:46', '2025-03-24 06:49:46'),
-(3, 2025032451, 5, 5000, 2, 6, 11, 5, 103, 1, 0, '2025-03-24 06:49:47', '2025-03-24 06:49:47'),
-(4, 2025032451, 7, 2500, 2, 7, 4, 6, 103, 1, 0, '2025-03-24 06:49:48', '2025-03-24 06:49:48'),
-(5, 2025032452, 3, 450, 1, 1, 1, 2, 103, 1, 0, '2025-03-24 07:43:06', '2025-03-24 07:43:06'),
-(6, 2025032452, 8, 3200, 2, 7, 8, 2, 103, 1, 0, '2025-03-24 07:43:07', '2025-03-24 07:43:07'),
-(7, 2025032443, 7, 2500, 2, 7, 4, 6, 103, 1, 0, '2025-03-24 07:44:36', '2025-03-24 07:44:36'),
-(8, 2025032443, 8, 3200, 2, 7, 8, 2, 103, 1, 0, '2025-03-24 07:44:37', '2025-03-24 07:44:37'),
-(9, 2025032443, 3, 450, 1, 1, 1, 2, 103, 1, 0, '2025-03-24 07:44:39', '2025-03-24 07:44:39'),
-(10, 2025032414, 4, 5400, 2, 7, 8, 2, 103, 0, 0, '2025-03-24 07:46:30', '2025-03-24 08:16:05'),
-(11, 2025032414, 5, 5000, 2, 6, 11, 5, 103, 0, 0, '2025-03-24 07:46:31', '2025-03-24 08:16:05'),
-(12, 2025032415, 6, 1300, 2, 6, 7, 6, 103, 1, 0, '2025-03-24 08:33:29', '2025-03-24 08:33:29');
+INSERT INTO `storetests` (`id`, `regNum`, `testId`, `testprice`, `referprice`, `categoryId`, `subcategoryId`, `specimenId`, `groupId`, `room`, `status`, `reportstatus`, `created_at`, `updated_at`) VALUES
+(1, 2025032851, 6, 1300, 300, 2, 6, 7, 6, 103, 1, 0, '2025-03-27 20:28:31', '2025-03-27 20:28:31'),
+(2, 2025032851, 5, 5000, 100, 2, 6, 11, 5, 103, 1, 0, '2025-03-27 20:28:32', '2025-03-27 20:28:32'),
+(3, 2025032852, 4, 5400, 1000, 2, 7, 8, 2, 103, 1, 0, '2025-03-27 20:28:50', '2025-03-27 20:28:50'),
+(4, 2025032852, 3, 450, 70, 1, 1, 1, 2, 103, 1, 0, '2025-03-27 20:28:51', '2025-03-27 20:28:51'),
+(5, 2025032852, 2, 200, 50, 1, 1, 1, 1, 103, 1, 0, '2025-03-27 20:28:52', '2025-03-27 20:28:52'),
+(6, 2025032852, 1, 650, 200, 1, 1, 1, 1, 103, 1, 0, '2025-03-27 20:28:53', '2025-03-27 20:28:53'),
+(7, 2025032853, 1, 650, 200, 1, 1, 1, 1, 103, 1, 0, '2025-03-27 20:29:28', '2025-03-27 20:29:28'),
+(8, 2025032853, 2, 200, 50, 1, 1, 1, 1, 103, 1, 0, '2025-03-27 20:29:29', '2025-03-27 20:29:29'),
+(9, 2025032853, 3, 450, 70, 1, 1, 1, 2, 103, 1, 0, '2025-03-27 20:29:30', '2025-03-27 20:29:30'),
+(10, 2025032853, 5, 5000, 100, 2, 6, 11, 5, 103, 1, 0, '2025-03-27 20:29:32', '2025-03-27 20:29:32'),
+(11, 2025032854, 3, 450, 70, 1, 1, 1, 2, 103, 1, 0, '2025-03-27 21:35:59', '2025-03-27 21:35:59'),
+(12, 2025032911, 2, 200, 50, 1, 1, 1, 1, 103, 1, 0, '2025-03-28 19:16:49', '2025-03-28 19:16:49'),
+(13, 2025032911, 1, 650, 200, 1, 1, 1, 1, 103, 1, 0, '2025-03-28 19:16:51', '2025-03-28 19:16:51'),
+(14, 2025032911, 3, 450, 70, 1, 1, 1, 2, 103, 1, 0, '2025-03-28 19:16:53', '2025-03-28 19:16:53'),
+(15, 2025032911, 4, 5400, 1000, 2, 7, 8, 2, 103, 1, 0, '2025-03-28 19:16:54', '2025-03-28 19:16:54'),
+(16, 2025032912, 5, 5000, 100, 2, 6, 11, 5, 103, 1, 0, '2025-03-28 19:18:24', '2025-03-28 19:18:24'),
+(17, 2025032912, 7, 2500, 750, 2, 7, 4, 6, 103, 1, 0, '2025-03-28 19:18:26', '2025-03-28 19:18:26'),
+(18, 2025032913, 1, 650, 200, 1, 1, 1, 1, 103, 1, 0, '2025-03-28 19:21:36', '2025-03-28 19:21:36'),
+(19, 2025032914, 4, 5400, 1000, 2, 7, 8, 2, 103, 1, 0, '2025-03-28 19:22:18', '2025-03-28 19:22:18'),
+(20, 2025032915, 6, 1300, 300, 2, 6, 7, 6, 103, 1, 0, '2025-03-28 21:02:09', '2025-03-28 21:02:09'),
+(21, 2025032916, 7, 2500, 750, 2, 7, 4, 6, 103, 1, 0, '2025-03-28 21:23:30', '2025-03-28 21:23:30'),
+(22, 2025032916, 3, 450, 70, 1, 1, 1, 2, 103, 1, 0, '2025-03-28 21:23:33', '2025-03-28 21:23:33');
 
 -- --------------------------------------------------------
 
@@ -358,9 +474,9 @@ CREATE TABLE `testdetails` (
 --
 
 INSERT INTO `testdetails` (`id`, `testName`, `categoryId`, `subcategoryId`, `specimenId`, `groupId`, `testPrice`, `rprice`, `room`, `testDescription`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'ABO', 1, 1, 1, 1, 650.00, 500.00, '103', 'Test Description', 1, '2025-02-25 04:20:05', '2025-02-25 04:20:05'),
-(2, 'RBS', 1, 1, 1, 1, 200.00, 100.00, '103', 'Test Description', 2, '2025-02-25 04:26:17', '2025-02-25 04:26:17'),
-(3, 'HbsAg', 1, 1, 1, 2, 450.00, 400.00, '103', 'Test Description', 2, '2025-02-25 04:26:47', '2025-02-25 04:26:47'),
+(1, 'ABO', 1, 1, 1, 1, 650.00, 200.00, '103', 'Test Description', 1, '2025-02-25 04:20:05', '2025-02-25 04:20:05'),
+(2, 'RBS', 1, 1, 1, 1, 200.00, 50.00, '103', 'Test Description', 2, '2025-02-25 04:26:17', '2025-02-25 04:26:17'),
+(3, 'HbsAg', 1, 1, 1, 2, 450.00, 70.00, '103', 'Test Description', 2, '2025-02-25 04:26:47', '2025-02-25 04:26:47'),
 (4, '3D x-ray', 2, 7, 8, 2, 5400.00, 1000.00, '103', 'Test Description', 1, '2025-03-23 09:08:25', '2025-03-23 09:08:25'),
 (5, 'USG', 2, 6, 11, 5, 5000.00, 100.00, '103', 'Test Description', 1, '2025-03-23 09:10:01', '2025-03-23 09:10:01'),
 (6, 'Anesthesia for CT.Scan of Brain', 2, 6, 7, 6, 1300.00, 300.00, '103', 'Test Description', 2, '2025-03-23 09:11:09', '2025-03-23 09:11:09'),
@@ -384,6 +500,7 @@ CREATE TABLE `testsaledetails` (
   `address` varchar(255) NOT NULL,
   `doctorId` int(11) NOT NULL,
   `referId` int(11) NOT NULL,
+  `referStatus` int(11) NOT NULL,
   `total` int(11) NOT NULL,
   `discount` int(11) NOT NULL,
   `payable` int(11) NOT NULL,
@@ -401,12 +518,17 @@ CREATE TABLE `testsaledetails` (
 -- Dumping data for table `testsaledetails`
 --
 
-INSERT INTO `testsaledetails` (`id`, `reg`, `date`, `name`, `dob`, `gender`, `phone`, `address`, `doctorId`, `referId`, `total`, `discount`, `payable`, `pay`, `duestatus`, `due`, `return`, `status`, `userId`, `created_at`, `updated_at`) VALUES
-(1, 2025032451, '2025-03-24', 'Shamim Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 1, 1, 13100, 0, 13100, 5000, 1, 8100, 0, 1, 5, '2025-03-24 06:49:55', '2025-03-24 06:49:55'),
-(2, 2025032452, '2025-03-24', 'Faria Akter', '2001-12-31', 'Female', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 4, 4, 3650, 800, 2850, 2500, 1, 350, 0, 1, 5, '2025-03-24 07:43:32', '2025-03-24 07:43:32'),
-(3, 2025032443, '2025-03-24', 'Rafiya Akter', '2001-12-31', 'Female', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 3, 2, 6150, 500, 5650, 4500, 1, 1150, 0, 1, 4, '2025-03-24 07:44:57', '2025-03-24 07:44:57'),
-(4, 2025032414, '2025-03-24', 'Monir Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 6, 4, 10400, 1200, 9200, 0, 3, 0, 7500, 0, 1, '2025-03-24 07:46:50', '2025-03-24 08:16:05'),
-(5, 2025032415, '2025-03-24', 'Shamim Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 3, 5, 1300, 0, 1300, 1300, 0, 0, 0, 1, 1, '2025-03-24 08:33:40', '2025-03-24 08:59:16');
+INSERT INTO `testsaledetails` (`id`, `reg`, `date`, `name`, `dob`, `gender`, `phone`, `address`, `doctorId`, `referId`, `referStatus`, `total`, `discount`, `payable`, `pay`, `duestatus`, `due`, `return`, `status`, `userId`, `created_at`, `updated_at`) VALUES
+(1, 2025032851, '2025-03-28', 'Shamim Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 1, 1, 0, 6300, 0, 6300, 5000, 1, 1300, 0, 1, 5, '2025-03-27 20:28:48', '2025-03-28 19:45:17'),
+(2, 2025032852, '2025-03-28', 'Mizan Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 1, 1, 0, 6700, 0, 6700, 4000, 1, 2700, 0, 1, 5, '2025-03-27 20:29:26', '2025-03-28 19:45:23'),
+(3, 2025032853, '2025-03-28', 'Fahmida Akter', '2001-12-31', 'Female', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 3, 1, 1, 6300, 0, 6300, 3500, 1, 2800, 0, 1, 5, '2025-03-27 20:29:49', '2025-03-27 21:56:38'),
+(4, 2025032854, '2025-03-28', 'Shamim Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 3, 2, 0, 450, 0, 450, 200, 1, 250, 0, 1, 5, '2025-03-27 21:36:07', '2025-03-28 19:47:07'),
+(5, 2025032911, '2025-03-29', 'Trishna', '2001-12-31', 'Female', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 3, 1, 1, 6700, 0, 6700, 5000, 1, 1700, 0, 1, 1, '2025-03-28 19:17:14', '2025-03-28 19:17:54'),
+(6, 2025032912, '2025-03-29', 'Farabi Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 5, 4, 0, 7500, 1700, 5800, 5800, 0, 0, 0, 1, 1, '2025-03-28 19:18:46', '2025-03-28 19:46:57'),
+(7, 2025032913, '2025-03-29', 'Somon', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 2, 3, 0, 650, 0, 650, 500, 1, 150, 0, 1, 1, '2025-03-28 19:21:54', '2025-03-28 21:15:09'),
+(8, 2025032914, '2025-03-29', 'Ashraful Islam', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 4, 1, 0, 5400, 200, 5200, 5200, 0, 0, 0, 1, 1, '2025-03-28 19:22:32', '2025-03-28 19:45:29'),
+(9, 2025032915, '2025-03-29', 'Fahim Hossain', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 1, 5, 0, 1300, 0, 1300, 500, 1, 800, 0, 1, 1, '2025-03-28 21:02:29', '2025-03-28 21:02:41'),
+(10, 2025032916, '2025-03-29', 'Ekra', '2001-12-31', 'Male', 1762164746, 'Kaliakair, Gazipur, Dhaka, Bangladesh', 2, 4, 0, 2950, 0, 2950, 2000, 1, 950, 0, 1, 1, '2025-03-28 21:23:47', '2025-03-28 21:23:58');
 
 -- --------------------------------------------------------
 
@@ -449,6 +571,24 @@ ALTER TABLE `doctors`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `excategories`
+--
+ALTER TABLE `excategories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `expenses`
+--
+ALTER TABLE `expenses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `exsubcategories`
+--
+ALTER TABLE `exsubcategories`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -480,6 +620,12 @@ ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Indexes for table `refercosts`
+--
+ALTER TABLE `refercosts`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `references`
@@ -547,6 +693,24 @@ ALTER TABLE `doctors`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `excategories`
+--
+ALTER TABLE `excategories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `expenses`
+--
+ALTER TABLE `expenses`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `exsubcategories`
+--
+ALTER TABLE `exsubcategories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -562,13 +726,19 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `refercosts`
+--
+ALTER TABLE `refercosts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `references`
@@ -586,7 +756,7 @@ ALTER TABLE `specimens`
 -- AUTO_INCREMENT for table `storetests`
 --
 ALTER TABLE `storetests`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `subcategories`
@@ -604,7 +774,7 @@ ALTER TABLE `testdetails`
 -- AUTO_INCREMENT for table `testsaledetails`
 --
 ALTER TABLE `testsaledetails`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users`

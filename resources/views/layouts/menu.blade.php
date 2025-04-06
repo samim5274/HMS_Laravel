@@ -32,13 +32,13 @@
 						<label>Navigation</label>
 					</li>
 					<li class="nav-item">
-					    <a href="index.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+					    <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
 					</li>
 					<li class="nav-item pcoded-hasmenu">
 					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Page layouts</span></a>
 					    <ul class="pcoded-submenu">
-					        <li><a href="layout-vertical.html" target="_blank">Vertical</a></li>
-					        <li><a href="layout-horizontal.html" target="_blank">Horizontal</a></li>
+					        <li><a href="#" target="_blank">Vertical</a></li>
+					        <li><a href="#" target="_blank">Horizontal</a></li>
 					    </ul>
 					</li>
 					<li class="nav-item pcoded-menu-caption">
@@ -52,28 +52,34 @@
 							<li><a href="/test-sale-return-view">Test Return</a></li>
 							<li><a href="/test-cancel-view">Test Calcel</a></li>
 							<li><a href="/test-details">Test Details</a></li>
+							<li><a href="/refer-cost-view">Refer Cost Payment</a></li>
 							<li><a href="/dignosis-test-setting">Settings</a></li>
 						</ul>
 					</li>
                     <li class="nav-item pcoded-hasmenu">
-						<a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-box"></i></span><span class="pcoded-mtext">Account Reports</span></a>
+						<a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layers"></i></span><span class="pcoded-mtext">Account Reports</span></a>
 						<ul class="pcoded-submenu">
 							<li><a href="/test-sale-report">Total Sale</a></li>
+							<li><a href="/total-sate-day-by-day">Total Sale Day by Day</a></li>
 							<li><a href="/day-wise-sale-report">Day wise Sale </a></li>
 							<li><a href="/user-wise-report-view">User wise Sale</a></li>
 							<li><a href="/due-report">Total Due</a></li>
 							<li><a href="/day-wise-due-report">Day wise Deu</a></li>
-							<li><a href="#">User wise Deu</a></li>
-							<li><a href="#">Day wise Cancel</a></li>
-							<li><a href="#">User wise Cancel</a></li>
-							<li><a href="#">Total Cancel</a></li>
+							<li><a href="/user-wise-due-report">User wise Deu</a></li>
+							<li><a href="/day-wise-cancel">Day wise Cancel</a></li>
+							<li><a href="/refer-cost-pay-report">Reference Cost Pay</a></li>
 						</ul>
 					</li>
 					<li class="nav-item pcoded-menu-caption">
-					    <label>Forms &amp; table</label>
+					    <label>Account &amp; Expenses</label>
 					</li>
-					<li class="nav-item">
-					    <a href="form_elements.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Forms</span></a>
+					<li class="nav-item pcoded-hasmenu">
+					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layers"></i></span><span class="pcoded-mtext">Expenses</span></a>
+					    <ul class="pcoded-submenu">
+					        <li><a href="/daily-expenses">Daily Expenses</a></li>
+					        <li><a href="/expenses-report" >Expenses Report</a></li>
+					        <li><a href="/expenses-setting" >Expenses Settings</a></li>
+					    </ul>
 					</li>
 					<li class="nav-item">
 					    <a href="tbl_bootstrap.html" class="nav-link "><span class="pcoded-micon"><i class="feather icon-align-justify"></i></span><span class="pcoded-mtext">Bootstrap table</span></a>

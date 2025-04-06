@@ -150,7 +150,7 @@
                                                             <td colspan="2"><strong>Total: </strong></td>
                                                             <td class="text-center"><strong>{{$sum3}}/-</td>
                                                             <td class="text-center"><strong>{{$sum4}}/-</strong></td>
-                                                            <td class="text-center"><strong>{{$sum4}}/-</strong></td>
+                                                            <td class="text-center"><strong>{{$sum5}}/-</strong></td>
                                                             <td class="text-center"><strong>{{$sum2}}/-</strong></td>
                                                             <td class="text-right"><strong>{{$sum}}/-</strong></td>
                                                         </tr>                                 

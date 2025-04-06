@@ -13,6 +13,7 @@ use App\Models\Group;
 use App\Models\Testdetails;
 use App\Models\Doctor;
 use App\Models\Reference;
+use App\Models\Refercost;
 use App\Models\Storetest;
 use App\Models\Testsaledetails;
 use Auth;
@@ -163,6 +164,7 @@ class DignosisController extends Controller
         $val->regNum = $invoice;
         $val->testId = $data->id;
         $val->testprice = $data->testPrice;
+        $val->referprice = $data->rprice;
         $val->categoryId = $data->categoryId;
         $val->subcategoryId = $data->subcategoryId;
         $val->specimenId = $data->specimenId;
@@ -235,6 +237,7 @@ class DignosisController extends Controller
      
         $data->status = 1;
         $data->return = 0;
+        $data->referStatus = 1;
         $data->userId = Auth::guard('admin')->user()->id;
             
         if($total <= 0){
@@ -408,6 +411,7 @@ class DignosisController extends Controller
             $data->pay = 0;
             $data->due = 0;
             $data->duestatus = 3;
+            $data->status = 3;
             $data->update();
             return redirect()->back()->with('success', 'Test cancel successfully');
         }
@@ -415,6 +419,74 @@ class DignosisController extends Controller
         {
             return redirect()->back()->with('error', 'Test already canceled! Please try to another patient. Thank you!');
         }
+    }
+
+    public function referCostView()
+    {
+        $refer = Reference::all();
+        return view('backend.outdoor.referCostView', compact('refer'));
+    }
+
+    public function referCostFind(Request $request, $id)
+    {
+        $testSale = Testsaledetails::where('referId', $id)->where('referStatus',1)->get(); 
+        
+        if($testSale->isEmpty())
+        {
+            return redirect()->back()->with('error', 'No test found for this reference');
+        }
+  
+        $refer = Reference::where('id',$id)->first();
+        
+        return view('backend.outdoor.referPatientFind', compact('testSale','refer'));
+    }
+
+    public function referCostFindPatient(Request $request, $id)
+    {
+        $testSale = Testsaledetails::where('id', $id)->get(); 
+
+        $invoice = $testSale[0]->reg;   
+
+        $refers = Reference::where('id',$testSale[0]->referId)->first();
+
+        $sum = Storetest::where('regNum', $invoice)->sum('testprice');
+        $referCostSum = Storetest::where('regNum', $invoice)->sum('referprice');
+        $store = Storetest::with('testdetails')->where('regNum', $invoice)->get();
+        //  dd($testSale);
+        return view('backend.outdoor.referCostPay', compact('testSale','store','refers','sum','referCostSum'));
+    }
+
+    public function referCostPay(Request $request, $regNum)
+    {
+        $paid = $request->has('txtPaid')? $request->get('txtPaid'):'';
+        $remark = $request->has('txtRemark')? $request->get('txtRemark'):'';
+        
+        $testSale = Testsaledetails::where('reg', $regNum)->get();
+        $store = Storetest::with('testdetails')->where('regNum', $testSale[0]->reg)->get();        
+        $totalReferPrice = Storetest::where('regNum', $testSale[0]->reg)->sum('referprice');
+
+        $saleTest = Testsaledetails::where('reg', $testSale[0]->reg)->first();
+        $saleTest->referStatus = 0;
+
+        $find = Refercost::where('regNum', $testSale[0]->reg)->first();        
+        if($find != null)
+        {
+            return redirect()->back()->with('error', 'Reference cost already paid');
+        }
+
+        $data = new Refercost();
+        $data->date = date('Y-m-d');
+        $data->regNum = $store[0]->regNum;
+        $data->patientId = $testSale[0]->id;
+        $data->userId = Auth::guard('admin')->user()->id;
+        $data->referId = $testSale[0]->referId;
+        $data->amount = $totalReferPrice;
+        $data->paid = $totalReferPrice;
+        $data->remarks = $remark;
+        $data->status = 1;
+        $saleTest->update();
+        $data->save();        
+        return redirect()->back()->with('success', 'Reference cost paid successfully');
     }
 
 }

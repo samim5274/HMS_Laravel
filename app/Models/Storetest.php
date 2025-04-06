@@ -15,6 +15,7 @@ class Storetest extends Model
         'regNum',
         'testId',
         'testprice',
+        'referprice',
         'categoryId',
         'subcategoryId',
         'specimenId',

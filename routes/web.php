@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\Admin\AdminController;
 use App\Http\Controllers\Backend\outdoor\DignosisController;
 use App\Http\Controllers\Backend\outdoor\ReportController;
+use App\Http\Controllers\Backend\Account\Expenses\ExpensesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,14 +66,41 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('/test-cancel/{id}', [DignosisController::class, 'testCancel']);
     Route::get('/test-cancel-status/{id}', [DignosisController::class, 'testCancelStatus']);
 
-    // report section routes
+    //referance section
+    Route::get('/refer-cost-view', [DignosisController::class, 'referCostView']);
+    Route::get('/refer-cost-find/{id}', [DignosisController::class, 'referCostFind']);
+    Route::get('/refer-cost-find-patient/{id}', [DignosisController::class, 'referCostFindPatient']);
+    Route::get('/refer-cost-pay/{regNum}', [DignosisController::class, 'referCostPay']);
 
+    // report section routes
     Route::get('/test-sale-report', [ReportController::class, 'testSaleReport'])->name('test.sale.report.View');
+    Route::get('/total-sate-day-by-day', [ReportController::class, 'totalSaleDayByDay']);
+    Route::get('/search-total-sale-day-by-day', [ReportController::class, 'searchTotalSaleDayByDay']);
     Route::get('/day-wise-sale-report', [ReportController::class, 'dayWiseSaleReport'])->name('day.wise.sale.report.View');
     Route::get('/search-date-wise-report', [ReportController::class, 'searchDateWiseReport']);
     Route::get('/user-wise-report-view', [ReportController::class, 'userWiseReportView']);
     Route::get('/user-wise-report', [ReportController::class, 'userWiseReport']);
     Route::get('/due-report', [ReportController::class, 'dueReport']);
     Route::get('/day-wise-due-report', [ReportController::class, 'dayWisedueReport']);
+    Route::get('/search-date-wise-due-report', [ReportController::class, 'searchDayWiseDueReport']);
+    Route::get('/user-wise-due-report', [ReportController::class, 'userDayWiseDueReport']);
+    Route::get('/search-user-wise-due-report', [ReportController::class, 'searchUserDayWiseDueReport']);
+
+    Route::get('/day-wise-cancel', [ReportController::class, 'dayWiseCancel']);
+    Route::get('/search-date-wise-cancel', [ReportController::class, 'searchDateWiseCancel']);
+
+    Route::get('/refer-cost-pay-report', [ReportController::class, 'referCostPayReport']);
+
+    // expenses section 
+    Route::get('/daily-expenses', [ExpensesController::class, 'dailyExpensesView']);
+    Route::get('/daily-expenses-paid', [ExpensesController::class, 'expensesPaid']);
+    Route::get('/expenses-setting', [ExpensesController::class, 'expensesSetting']);
+    Route::get('/add-expenses-category', [ExpensesController::class, 'addExpenCat']);
+    Route::get('/add-expenses-sub-category', [ExpensesController::class, 'addSubExpenCat']);
+    Route::get('/get-sub-category/{id}', [ExpensesController::class, 'getSubCategory']);
+    Route::get('/expenses-status-view/{id}', [ExpensesController::class, 'expensesStatusView']);
+    Route::get('/daily-expenses-status-update', [ExpensesController::class, 'expensesStatusUpdate']);
+    // expenses report section
+    Route::get('/expenses-report', [ExpensesController::class, 'expensesReport']);
 });
 

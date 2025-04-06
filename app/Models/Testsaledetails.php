@@ -21,6 +21,7 @@ class Testsaledetails extends Model
         'address',
         'doctorId',
         'referId',
+        'referStatus',
         'total',
         'discount',
         'payable',
@@ -60,4 +61,9 @@ class Testsaledetails extends Model
     // {
     //     return $this->belongsTo(Refer::class, 'referId', 'id');
     // }
+
+    public function refercost()
+    {
+        return $this->hasMany(Testsaledetails::class, 'patientId', 'id');
+    }
 }

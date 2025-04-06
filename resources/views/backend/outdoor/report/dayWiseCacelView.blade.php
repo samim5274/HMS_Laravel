@@ -32,7 +32,21 @@
 	<!-- [ navigation menu ] start -->
     @include('layouts.menu')
 	<!-- [ navigation menu ] end -->
-
+     
+<section id="account-section">
+  <div class="">
+    <div class="row">
+        <div class="col text-center">
+            @if(Session::has('error'))
+            <div class="alert alert-danger">{{Session::get('error')}}</div>
+            @endif
+            @if(Session::has('success'))
+            <div class="alert alert-success">{{Session::get('success')}}</div>
+            @endif
+        </div>
+    </div>
+  </div>
+</section>
 
 <!-- [ Main Content ] start -->
 <div class="pcoded-main-container">
@@ -55,24 +69,52 @@
         </div>
         <!-- [ breadcrumb ] end -->
         <!-- [ Main Content ] start -->
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Search Your Data specific date wise report.</h5>
+                    </div>
+                    <div class="card-body">
+                        <form class="theme-form" action="/search-date-wise-cancel" method="GET">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Email">Start Date</label>
+                                        <input name="dtpStartDate" type="date" id="currentDate" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="Text">End</label>
+                                        <input name="dtpEndDate" type="date" id="beforeDate" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="floating-label" for="">Search</label>
+                                        <button type="submit" class=" form-control btn-info">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <div class="row">
 			<!-- [ tabs ] start -->
 			<div class="col-sm-12">
 				<div class="card">
 					<div class="card-header">
-						<h5>Total Due Report</h5>
+						<h5>Total Cancel: {{ now()->format('d M-Y'); }}</h5>
 					</div>
 					<div class="card-body">
 						<ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
 							<li class="nav-item">
 								<a class="nav-link active text-uppercase" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Today</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link text-uppercase" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Last 7 day's</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link text-uppercase" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Last 30 day's</a>
 							</li>
 						</ul>
 						<div class="tab-content" id="myTabContent">
@@ -80,7 +122,6 @@
                                 <div class="col-sm-12">
                                     <div class="card">                                
                                         <div class="card-body table-border-style">
-                                            <p>Date: {{ now()->toDateString() }}</p>
                                             <div class="text-right">
                                                 <a href="#"><button class="btn btn-info"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer" viewBox="0 0 16 16"><path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1"/><path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1"/></svg></button></a>
                                             </div>
@@ -92,10 +133,8 @@
                                                             <th>Patient Name</th>
                                                             <th>Phone</th>
                                                             <th class="text-center">Total</th>
-                                                            <th class="text-center">Discount</th>
-                                                            <th class="text-center">Due</th>
                                                             <th class="text-center">Payable</th>
-                                                            <th class="text-right">Received</th>
+                                                            <th class="text-right">Return</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -105,19 +144,15 @@
                                                             <td>{{$val->name}}</td>
                                                             <td>0{{$val->phone}}</td>
                                                             <td class="text-center">{{$val->total}}/-</td>
-                                                            <td class="text-center">{{$val->discount}}/-</td>
-                                                            <td class="text-center">{{$val->due}}/-</td>
                                                             <td class="text-center">{{$val->payable}}/-</td>
-                                                            <td class="text-right">{{$val->pay}}/-</td>
+                                                            <td class="text-right">{{$val->return}}/-</td>
                                                         </tr>   
                                                         @endforeach   
                                                         <tr>
                                                             <td colspan="3"><strong>Total: </strong></td>
-                                                            <td class="text-center">{{$sum3}}/-</td>
-                                                            <td class="text-center">{{$sum4}}/-</td>
-                                                            <td class="text-center text-danger due"><strong>{{$sum5}}/-</strong></td>
-                                                            <td class="text-center">{{$sum2}}/-</td>
-                                                            <td class="text-right">{{$sum5}}/-</td>
+                                                            <td class="text-center">{{$total}}/-</td>
+                                                            <td class="text-center">{{$payable}}/-</td>
+                                                            <td class="text-right text-danger">{{$return}}/-</td>
                                                         </tr>                                          
                                                     </tbody>
                                                 </table>
@@ -131,10 +166,6 @@
 				</div>
 			</div>
         </div>
-
-
-
-
 
 
         <!-- [ Main Content ] end -->
@@ -153,6 +184,7 @@
 
 <!-- custom-chart js -->
 <script src="/assets/js/pages/dashboard-main.js"></script>
+<script src="/js/main.js"></script>
 </body>
 
 </html>

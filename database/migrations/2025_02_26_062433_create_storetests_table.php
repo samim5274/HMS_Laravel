@@ -18,6 +18,7 @@ class CreateStoretestsTable extends Migration
             $table->integer('regNum');
             $table->integer('testId');
             $table->integer('testprice');
+            $table->integer('referprice');
             $table->integer('categoryId');
             $table->integer('subcategoryId');
             $table->integer('specimenId');

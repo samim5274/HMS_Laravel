@@ -24,6 +24,7 @@ class CreateTestsaledetailsTable extends Migration
             $table->string('address');
             $table->integer('doctorId');
             $table->integer('referId');
+            $table->integer('referStatus');
             $table->integer('total');
             $table->integer('discount');
             $table->integer('payable');
