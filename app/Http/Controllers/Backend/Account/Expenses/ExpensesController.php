@@ -119,9 +119,12 @@ class ExpensesController extends Controller
 
     public function expensesStatusUpdate(Request $request, $id)
     {
-        // $data = $expenses = Expenses::where('id', $id)->first();  
-        // $category = Excategory::all();
-        // $subcategory = Exsubcategory::with('category')->get();
-        // return View('backend.account.expenses.expensesStatus', compact('data','category','subcategory'));
+        $category = Excategory::all();
+        $subcategory = Exsubcategory::with('category')->get();
+        $status = $request->has('cbxStatus')? $request->get('cbxStatus') : '';        
+        $data = $expenses = Expenses::where('id', $id)->first();  
+        $data->status = $status;
+        $data->update();
+        return redirect('/expenses-report')->with('success','Expenses status updated.');
     }
 }

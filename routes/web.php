@@ -99,7 +99,7 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('/add-expenses-sub-category', [ExpensesController::class, 'addSubExpenCat']);
     Route::get('/get-sub-category/{id}', [ExpensesController::class, 'getSubCategory']);
     Route::get('/expenses-status-view/{id}', [ExpensesController::class, 'expensesStatusView']);
-    Route::get('/daily-expenses-status-update', [ExpensesController::class, 'expensesStatusUpdate']);
+    Route::get('/daily-expenses-status-update/{id}', [ExpensesController::class, 'expensesStatusUpdate']);
     // expenses report section
     Route::get('/expenses-report', [ExpensesController::class, 'expensesReport']);
 });

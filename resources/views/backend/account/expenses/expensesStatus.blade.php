@@ -74,7 +74,7 @@
         <div class="card">
             <div class="card-header bg-warning">Daily Expenses Status</div>
             <div class="card-body">
-                <form action="/daily-expenses-status-update" method="GET" enctype="multipart/form-data">
+                <form action="{{url('/daily-expenses-status-update/'.$data->id)}}" method="GET" enctype="multipart/form-data">
                     @csrf
                     <div class="row">                        
                     <div class="col-md-6">
