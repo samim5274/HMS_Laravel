@@ -39,7 +39,7 @@ class AdminController extends Controller
             $data->email = $request->has('txtEmail')? $request->get('txtEmail'):'';
             $data->password = Hash::make($request->has('txtPassword')? $request->get('txtPassword'):'');
             $data->status = 1;
-            $data->superAdmin = 1;
+            $data->superAdmin = 0;
             $data->save();
             return redirect()->back()->with('success','User admin-user created successfully!');
         }
