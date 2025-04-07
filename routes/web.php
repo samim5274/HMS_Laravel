@@ -37,17 +37,17 @@ Route::group(['middleware'=>'admin'], function(){
 
     // dignosis test outdoor section
     Route::get('/test-details', [DignosisController::class, 'testDetailsView'])->name('test.Details.View');
-    Route::get('/get-sub-category/{id}', [DignosisController::class, 'getSubCategory']);
-    Route::get('/add-test-details', [DignosisController::class, 'addTest'])->name('test.Details.View');
+    Route::get('/get-sub-category/{id}', [DignosisController::class, 'getSubCategory'])->middleware('adminCheck');
+    Route::get('/add-test-details', [DignosisController::class, 'addTest'])->name('test.Details.View')->middleware('adminCheck');
 
-    Route::get('/dignosis-test-setting', [DignosisController::class, 'settingView'])->name('test.setting.View');
+    Route::get('/dignosis-test-setting', [DignosisController::class, 'settingView'])->name('test.setting.View')->middleware('adminCheck');
 
-    Route::get('/add-category', [DignosisController::class, 'addCategory']);
-    Route::get('/add-sub-category', [DignosisController::class, 'addSubCategory']);
-    Route::get('/add-specimen', [DignosisController::class, 'addSpecimen']);
-    Route::get('/add-group', [DignosisController::class, 'addGroup']);
-    Route::get('/add-doctor', [DignosisController::class, 'addDoctor']);
-    Route::get('/add-reference', [DignosisController::class, 'addReference']);
+    Route::get('/add-category', [DignosisController::class, 'addCategory'])->middleware('adminCheck');
+    Route::get('/add-sub-category', [DignosisController::class, 'addSubCategory'])->middleware('adminCheck');
+    Route::get('/add-specimen', [DignosisController::class, 'addSpecimen'])->middleware('adminCheck');
+    Route::get('/add-group', [DignosisController::class, 'addGroup'])->middleware('adminCheck');
+    Route::get('/add-doctor', [DignosisController::class, 'addDoctor'])->middleware('adminCheck');
+    Route::get('/add-reference', [DignosisController::class, 'addReference'])->middleware('adminCheck');
 
     Route::get('/add-item/{id}', [DignosisController::class, 'addItem']);
     Route::get('/remove-item/{id}', [DignosisController::class, 'removeItem']);
@@ -59,12 +59,12 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('/due-collection-update/{id}', [DignosisController::class, 'deuCollectionUpdate']);
 
     Route::get('/test-sale-return-view', [DignosisController::class, 'testSaleReturnView'])->name('test.sale.return.View');
-    Route::get('/test-return/{id}', [DignosisController::class, 'testReturn']);
-    Route::get('/test-return-status/{id}', [DignosisController::class, 'testReturnStatus']);
+    Route::get('/test-return/{id}', [DignosisController::class, 'testReturn'])->middleware('adminCheck');
+    Route::get('/test-return-status/{id}', [DignosisController::class, 'testReturnStatus'])->middleware('adminCheck');
 
     Route::get('/test-cancel-view', [DignosisController::class, 'testCancelView'])->name('test.cancel.View');
     Route::get('/test-cancel/{id}', [DignosisController::class, 'testCancel']);
-    Route::get('/test-cancel-status/{id}', [DignosisController::class, 'testCancelStatus']);
+    Route::get('/test-cancel-status/{id}', [DignosisController::class, 'testCancelStatus'])->middleware('adminCheck');
 
     //referance section
     Route::get('/refer-cost-view', [DignosisController::class, 'referCostView']);
@@ -95,7 +95,7 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('/daily-expenses', [ExpensesController::class, 'dailyExpensesView']);
     Route::get('/daily-expenses-paid', [ExpensesController::class, 'expensesPaid']);
     Route::get('/expenses-setting', [ExpensesController::class, 'expensesSetting']);
-    Route::get('/add-expenses-category', [ExpensesController::class, 'addExpenCat']);
+    Route::get('/add-expenses-category', [ExpensesController::class, 'addExpenCat'])->middleware('adminCheck');
     Route::get('/add-expenses-sub-category', [ExpensesController::class, 'addSubExpenCat']);
     Route::get('/get-sub-category/{id}', [ExpensesController::class, 'getSubCategory']);
     Route::get('/expenses-status-view/{id}', [ExpensesController::class, 'expensesStatusView'])->middleware('adminCheck');
@@ -103,4 +103,3 @@ Route::group(['middleware'=>'admin'], function(){
     // expenses report section
     Route::get('/expenses-report', [ExpensesController::class, 'expensesReport']);
 });
-
