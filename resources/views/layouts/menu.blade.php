@@ -32,7 +32,7 @@
 						<label>Navigation</label>
 					</li>
 					<li class="nav-item">
-					    <a href="#" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+					    <a href="/dashboard" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
 					</li>
 					<li class="nav-item pcoded-hasmenu">
 					    <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layout"></i></span><span class="pcoded-mtext">Page layouts</span></a>
@@ -55,6 +55,9 @@
 							<li><a href="/refer-cost-view">Refer Cost Payment</a></li>
 							<li><a href="/dignosis-test-setting">Settings</a></li>
 						</ul>
+					</li>
+					<li class="nav-item">
+					    <a href="/investigation-report-view" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Investigation Report</span></a>
 					</li>
                     <li class="nav-item pcoded-hasmenu">
 						<a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-layers"></i></span><span class="pcoded-mtext">Account Reports</span></a>

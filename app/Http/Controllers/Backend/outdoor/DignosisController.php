@@ -489,4 +489,21 @@ class DignosisController extends Controller
         return redirect()->back()->with('success', 'Reference cost paid successfully');
     }
 
+    public function reportView()
+    {
+        $testSale = Testsaledetails::where('status', 1)->orderBy('id', 'desc')->get();
+        return view('backend.outdoor.investigationReport.ivestigationReportView', compact('testSale'));
+    }
+
+    public function reportStatus(Request $request, $id)
+    {
+        $testSale = Testsaledetails::where('id', $id)->orderBy('id', 'desc')->get();
+        $testDetails = Storetest::with('testdetails')->where('regNum', $testSale[0]->reg)->get();
+        $age = Carbon::parse($testSale[0]->dob)->diff(Carbon::now());
+        $year = $age->y;
+        $month = $age->m;
+        $day = $age->d;
+        return view('backend.outdoor.investigationReport.investigationReportStatus', compact('testSale','testDetails', 'year','month','day'));
+    }
+
 }
