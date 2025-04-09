@@ -127,18 +127,11 @@
                                         </td> -->
                                         <td class="text-right">
                                             <select name="reportStatus" class="custom-select">
-                                                @php
-                                                    $reportStatus = [
-                                                        0 => '--Select Report Status--',
-                                                        1 => 'Pending',
-                                                        2 => 'Sample Collecting',
-                                                        3 => 'Done',
-                                                        4 => 'Delivered'
-                                                    ];
-                                                @endphp
-                                                @foreach($reportStatus as $key => $status)
-                                                    <option value="{{ $key }}" {{ $val->reportStatus == $key ? 'selected' : '' }}>{{ $status }}</option>
-                                                @endforeach
+                                                <option value="" selected disabled>--Select Report Status--</option>
+                                                <option value="" selected >Sample Collecting</option>
+                                                <option value="" selected >Pending</option>
+                                                <option value="" selected >Done</option>
+                                                <option value="" selected disabled>Delivered</option>
                                             </select>
                                         </td>
                                     </tr>
