@@ -382,7 +382,7 @@ class DignosisController extends Controller
 
     public function testCancelView()
     {
-        $testSale = Testsaledetails::all();
+        $testSale = Testsaledetails::where('status', 1)->orderBy('id', 'desc')->get();
         return view('backend.outdoor.testCancelView', compact('testSale'));
     }
 
@@ -397,10 +397,11 @@ class DignosisController extends Controller
     public function testCancelStatus(Request $request, $id)
     {
         $data = Testsaledetails::where('id',$id)->first();
-        $store = Storetest::with('testdetails')->where('regNum', $data->reg)->where('reportstatus',1)->get();
+        $store = Storetest::with('testdetails')->where('regNum', $data->reg)->whereBetween('reportstatus',[1,4])->get();
+        
         if($store->isNotEmpty())
         {
-            return redirect()->back()->with('error', 'Test already reported! Please try to another patient. Thank you!');
+            return redirect()->back()->with('error', 'Test report already created! Please try to another patient. Thank you!');
         }
 
         if($data->status == '1')
@@ -498,8 +499,7 @@ class DignosisController extends Controller
     public function reportStatus(Request $request, $id)
     {
         $testSale = Testsaledetails::where('id', $id)->orderBy('id', 'desc')->get();
-        $storeTest = Storetest::with('testdetails')->where('regNum', $testSale[0]->reg)->get();
-        
+        $storeTest = Storetest::with('testdetails')->where('regNum', $testSale[0]->reg)->get();        
         $age = Carbon::parse($testSale[0]->dob)->diff(Carbon::now());
         $year = $age->y;
         $month = $age->m;
@@ -510,12 +510,9 @@ class DignosisController extends Controller
 
     public function reportUpdated(Request $request, $reg, $id)
     {
-        $data = Testsaledetails::where('reg', $reg)->first();       
-                     
-        $cbxStatus = $request->has('cbxStatus')? $request->get('cbxStatus'):'';
-        
-        $testStore = Storetest::where('regNum', $data->reg)->where('id', $id)->update(['reportstatus' => $cbxStatus]);
-                
+        $data = Testsaledetails::where('reg', $reg)->first();                            
+        $cbxStatus = $request->has('cbxStatus')? $request->get('cbxStatus'):'';        
+        $testStore = Storetest::where('regNum', $data->reg)->where('id', $id)->update(['reportstatus' => $cbxStatus]);                
         return redirect()->back()->with('success', 'Report updated successfully');
     }
 }
