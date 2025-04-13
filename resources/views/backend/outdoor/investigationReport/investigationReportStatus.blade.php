@@ -3,7 +3,7 @@
 
 <head>
     <title>Flat Able - Premium Admin Template by Phoenixcoded</title>
-    
+
     <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
@@ -22,10 +22,10 @@
             width: 100%;
         }
     </style>
-    
+
 </head>
 <body class="">
-	
+
 	<!-- [ navigation menu ] start -->
     @include('layouts.menu')
 	<!-- [ navigation menu ] end -->
@@ -45,7 +45,7 @@
     </div>
   </div>
 </section>
-	
+
 <section class="pcoded-main-container">
     <div class="pcoded-content">
         <!-- [ breadcrumb ] start -->
@@ -90,7 +90,7 @@
                                 <label for="inputAddress">Address</label>
                                 <input type="text" class="form-control" disabled id="inputAddress" value="{{$val->address}}" placeholder="1234 Main St">
                             </div>
-                        @endforeach                
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -106,47 +106,40 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Reg. No</th>
-                                        <th>Test Name</th>
-                                        <th class="text-right">Status</th>
+                                        <th class="text-center">Test Name</th>
+                                        <th colspan="2" class="text-right">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($testDetails as $key => $val)
-                                    <tr>
-                                        <td scope="row">{{$key+1}}</td>
-                                        <td class="text-left">{{$val->regNum}}</td>
-                                        <td class="text-left">{{$val->testdetails->testName}}</td>
-                                        <!-- <td class="text-right">
-                                            <select name="reportStatus" class="custom-select">
-                                                <option disabled {{ $val->reportStatus === 0 ? 'selected' : '' }}>--Select Report Status--</option>
-                                                <option value="2" {{ $val->reportStatus == 2 ? 'selected' : '' }}>Sample Collecting</option>
-                                                <option value="1" {{ $val->reportStatus == 1 ? 'selected' : '' }}>Pending</option>
-                                                <option value="3" {{ $val->reportStatus == 3 ? 'selected' : '' }}>Done</option>
-                                                <option value="4" {{ $val->reportStatus == 4 ? 'selected' : '' }}>Delivered</option>
-                                            </select>
-                                        </td> -->
-                                        <td class="text-right">
-                                            <select name="reportStatus" class="custom-select">
-                                                <option value="" selected disabled>--Select Report Status--</option>
-                                                <option value="" selected >Sample Collecting</option>
-                                                <option value="" selected >Pending</option>
-                                                <option value="" selected >Done</option>
-                                                <option value="" selected disabled>Delivered</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    @endforeach 
+                                        @foreach($storeTest as $key => $val)
+                                        <form action="{{url('/investigation-report-update/'.$val->regNum.'/'.$val->id)}}" method="GET" enctype="multipart/form-data">
+                                        <tr>
+                                            <td scope="row">{{$key+1}}</td>
+                                            <td class="text-left">{{$val->regNum}}</td>
+                                            <td class="text-center">{{$val->testdetails->testName}}</td>
+                                            <td class="text-right">
+                                                <select name="cbxStatus" class="form-control mt-2" id="cbxStatus">
+                                                    <option value="0" @if($val->reportstatus == 0) selected @endif>--Select Report Status--</option>
+                                                    <option value="1" @if($val->reportstatus == 1) selected @endif>Sample Collection</option>
+                                                    <option value="2" @if($val->reportstatus == 2) selected @endif>Pending</option>
+                                                    <option value="3" @if($val->reportstatus == 3) selected @endif>Ready</option>
+                                                    <option value="4" @if($val->reportstatus == 4) selected @endif>Delivered</option>
+                                                </select>
+                                            </td>
+                                            <td class="text-left"><button type="submit" class="btn btn-primary mt-2">Update</button></td>
+                                        </tr>
+                                        </form>
+                                        @endforeach
+                                    </form>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>        
+        </div>
     </div>
 </section>
-
-
 
     <!-- Required Js -->
     <script src="/assets/js/vendor-all.min.js"></script>
@@ -160,7 +153,6 @@
 <!-- custom-chart js -->
 <script src="/assets/js/pages/dashboard-main.js"></script>
 
-<script src="/js/testSale.js"></script>
 </body>
 
 </html>

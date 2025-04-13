@@ -498,12 +498,24 @@ class DignosisController extends Controller
     public function reportStatus(Request $request, $id)
     {
         $testSale = Testsaledetails::where('id', $id)->orderBy('id', 'desc')->get();
-        $testDetails = Storetest::with('testdetails')->where('regNum', $testSale[0]->reg)->get();
+        $storeTest = Storetest::with('testdetails')->where('regNum', $testSale[0]->reg)->get();
+        
         $age = Carbon::parse($testSale[0]->dob)->diff(Carbon::now());
         $year = $age->y;
         $month = $age->m;
         $day = $age->d;
-        return view('backend.outdoor.investigationReport.investigationReportStatus', compact('testSale','testDetails', 'year','month','day'));
+
+        return view('backend.outdoor.investigationReport.investigationReportStatus', compact('testSale','storeTest', 'year','month','day'));
     }
 
+    public function reportUpdated(Request $request, $reg, $id)
+    {
+        $data = Testsaledetails::where('reg', $reg)->first();       
+                     
+        $cbxStatus = $request->has('cbxStatus')? $request->get('cbxStatus'):'';
+        
+        $testStore = Storetest::where('regNum', $data->reg)->where('id', $id)->update(['reportstatus' => $cbxStatus]);
+                
+        return redirect()->back()->with('success', 'Report updated successfully');
+    }
 }

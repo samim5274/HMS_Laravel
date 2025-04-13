@@ -48,6 +48,7 @@ Route::group(['middleware'=>'admin'], function(){
         Route::get('/add-group', [DignosisController::class, 'addGroup']);
         Route::get('/add-doctor', [DignosisController::class, 'addDoctor']);
         Route::get('/add-reference', [DignosisController::class, 'addReference']);
+        Route::get('/add-report-status', [DignosisController::class, 'addReportStatus']);
 
         Route::get('/test-return/{id}', [DignosisController::class, 'testReturn']);
         Route::get('/test-return-status/{id}', [DignosisController::class, 'testReturnStatus']);  
@@ -87,6 +88,7 @@ Route::group(['middleware'=>'admin'], function(){
     // investigation report section
     Route::get('/investigation-report-view', [DignosisController::class, 'reportView'])->name('investigation.report.View');
     Route::get('/investigation-report-status/{id}', [DignosisController::class, 'reportStatus']);
+    Route::get('/investigation-report-update/{reg}/{id}', [DignosisController::class, 'reportUpdated']);
 
     // report section routes
     Route::get('/test-sale-report', [ReportController::class, 'testSaleReport'])->name('test.sale.report.View');
